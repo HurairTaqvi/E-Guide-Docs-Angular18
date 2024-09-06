@@ -1,0 +1,23 @@
+.newsfeed-main::-webkit-scrollbar {
+  width: 0;
+  /* border: 1px solid blue; */
+  height: calc(100vh - 72px);
+  overflow: auto;
+}
+
+.newsfeed-main {
+  /* border: 1px solid blue; */
+  height: calc(100vh - 72px);
+  overflow: auto;
+}
+
+.newsfeed-content {
+  height: 200vh;
+  /* border: 1px solid red; */
+  padding: 10px;
+}
+
+.rightbar {
+  padding: 10px;
+  border: 1px solid orange;
+}
