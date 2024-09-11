@@ -1,6 +1,18 @@
+.my-breadcrumbs {
+  cursor: pointer;
+}
+
+.my-breadcrumbs a {
+  font-size: 14px;
+  display: inline;
+  color: grey;
+  text-decoration: none;
+  /* font-style: italic; */
+}
+
 .newsfeed-main::-webkit-scrollbar {
   width: 0;
-  /* border: 1px solid blue; */
+  /* border: 1px solid grey; */
   height: calc(100vh - 72px);
   overflow: auto;
 }
@@ -13,11 +25,49 @@
 
 .newsfeed-content {
   height: 200vh;
+  text-align: justify;
+  font-family: Arial, Helvetica, sans-serif;
   /* border: 1px solid red; */
-  padding: 10px;
+  padding: 20px;
 }
 
+.newsfeed-content h1 {
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.newsfeed-content p {
+  font-size: 18px;
+}
+
+.newsfeed-content li {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.leftsidebar {
+  border-right: 1px solid rgb(209, 204, 204);
+}
+
+/* .leftsidebar ul li {} */
+
 .rightbar {
+  cursor: pointer;
   padding: 10px;
-  border: 1px solid orange;
+  border-left: 1px solid rgb(209, 204, 204);
+}
+
+.rightbar li {
+  margin-top: 10px;
+}
+
+.rightbar li:hover {
+  padding: 10px;
+  background-color: rgb(146, 89, 18);
+  color: antiquewhite;
+}
+
+.innerhtml-styling h1 {
+  color: red;
 }

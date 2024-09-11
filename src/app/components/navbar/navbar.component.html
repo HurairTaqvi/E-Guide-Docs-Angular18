@@ -1,7 +1,9 @@
 <nav class="navbar">
   <!-- Left: Logo -->
   <div class="navbar-left">
-    <img src="\images\logo.png" alt="" class="navbar-logo" />
+    <a href="/">
+      <img src="\images\logo.png" alt="" class="navbar-logo" height="80px" />
+    </a>
   </div>
 
   <!-- Center: Search bar -->
@@ -12,11 +14,11 @@
   <!-- Right: Dropdown -->
   <div class="navbar-right">
     <div class="dropdown">
-      <button class="dropdown-button">Doc</button>
+      <button class="dropdown-button">Services</button>
       <div class="dropdown-content">
-        <a href="#">Option 1</a>
-        <a href="#">Option 2</a>
-        <a href="#">Option 3</a>
+        @for (item of serviceList; track $index) {
+        <a (click)="routetoservicedetail(item.id)">{{ item.name }}</a>
+        }
       </div>
     </div>
   </div>

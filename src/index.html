@@ -1,13 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>GuideOne</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>GuideOne</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+
+  <script>
+    function myFunction(divId) {
+      // alert(0);
+      const element = document.getElementById(divId);
+      // alert("Id is calling properly");
+      if (element) {
+        // alert("function is working");
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // alert("function is not working");
+        console.error("Element not found: " + divId);
+      }
+    }
+  </script>
 </html>

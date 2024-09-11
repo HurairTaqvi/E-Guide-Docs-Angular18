@@ -6,11 +6,11 @@ export const routes: Routes = [
   //   path: '',
   //   component: HomeComponent,
   // },
-  // {
-  //   path: 'product',
-  //   loadComponent: () =>
-  //     import('./components/services/services.component').then(
-  //       (c) => c.ServicesComponent
-  //     ),
-  // },
+  {
+    path: 'service',
+    loadComponent: () =>
+      import('./components/services/services.component').then(
+        (c) => c.ServicesComponent
+      ),
+  },
 ];

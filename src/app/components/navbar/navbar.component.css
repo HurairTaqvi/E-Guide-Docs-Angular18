@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border: 1px solid grey;
-  background-color: rgb(197, 188, 188);
+  /* border: 1px solid grey;   */
+  background-color: rgb(218, 216, 216);
   color: rgb(3, 3, 3);
   position: fixed; /* Stick it to the top */
   top: 0; /* Align it to the top */
@@ -25,11 +25,13 @@
 .navbar-right {
   flex: 1;
   text-align: right;
+  margin-right: 20px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  width: max-content;
 }
 
 .dropdown-button {

@@ -1,60 +1,59 @@
 <!-- <router-outlet></router-outlet> -->
-
-<div
-  class="container-fluid"
-  style="padding-top: 72px; max-height: 100vh; min-height: 100vh"
->
+<div class="container-fluid" style="padding-top: 72px; max-height: 100vh; min-height: 100vh">
   <div class="row main">
-    <div class="col-3 g-0">
+    <!-- Left Sidebar -->
+    <div class="col-3 g-0 leftsidebar nz-menu">
       <ul nz-menu nzMode="inline">
-        <li nz-submenu nzTitle="Navigation One" nzIcon="mail" nzOpen>
-          <ul>
-            <li nz-menu-group nzTitle="Item 1">
-              <ul>
-                <li nz-menu-item nzSelected>Option 1</li>
-                <li nz-menu-item>Option 2</li>
-              </ul>
-            </li>
-            <li nz-menu-group nzTitle="Item 2">
-              <ul>
-                <li nz-menu-item>Option 3</li>
-                <li nz-menu-item>Option 4</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Navigation Two" nzIcon="appstore">
-          <ul>
-            <li nz-menu-item>Option 5</li>
-            <li nz-menu-item>Option 6</li>
-            <li nz-submenu nzTitle="Submenu">
-              <ul>
-                <li nz-menu-item>Option 7</li>
-                <li nz-menu-item>Option 8</li>
-                <li nz-submenu nzTitle="Submenu">
-                  <ul>
-                    <li nz-menu-item>Option 9</li>
-                    <li nz-menu-item>Option 10</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
-          <ul>
-            <li nz-menu-item>Option 11</li>
-            <li nz-menu-item>Option 12</li>
-            <li nz-menu-item>Option 13</li>
-          </ul>
-        </li>
+        @for (item of leftbarlist; track $index){
+        @for (x of item. description; track $index){
+        @for (y of x.sidebarlist; track $index) {
+        @if(y.sublist.length <= 0) { <li nz-menu-item (click)="selectedlist(y.id)">{{ y.name }}</li>
+          } @else {
+          <li nz-submenu [nzTitle]="y.name" nzIcon="appstore">
+            <ul>
+              @for (z of y.sublist; track $index) {
+              <li nz-menu-item>{{ z.name }}</li>
+              }
+            </ul>
+          </li>
+          } } } }
       </ul>
     </div>
 
+    <!-- News Feed -->
     <div class="col-7 g-0 newsfeed-main">
-      <div class="newsfeed-content">News Feed</div>
+      <div class="newsfeed-content">
+        <div class="my-breadcrumbs">
+          <a href="#"> Home </a>/ <a href="#"> Commerce-sdk </a>/
+          <a href="#"> Integration Methods </a>/
+          <a href="#"> Commerce Web Services </a>
+        </div>
+        <br />
+        @for (item of newsfeed; track $index) {
+        <!-- @for (x of item; track $index) { -->
+        <!-- <li onclick="myFunction('overview')">{{x.name}}</li> -->
+        <div id="overview" [innerHTML]=item.body></div>
+        <!-- } -->
+        }
+
+      </div>
     </div>
 
-    <div class="col-2 rightbar">Right Sidebar</div>
+    <!-- Right Side Bar -->
+    <div class="col-2 rightbar">
+      <h5>On this page</h5>
+
+      <ul>
+        @for (item of rightbarlist; track $index) {
+        @for (x of item; track $index) {
+        <li onclick="myFunction('overview')">{{x.name}}</li>
+        }
+        }
+
+      </ul>
+      <!-- <li onclick="myFunction('overview')">{{item.name}}</li> -->
+      <!-- <li onclick="myFunction('features')">Features</li>
+      <li onclick="myFunction('workflow')">Workflow</li> -->
+    </div>
   </div>
 </div>
