@@ -90,4 +90,28 @@ export class ServicesComponent {
       },
     });
   }
+  
+  getHtmlContent(item: any): string {
+    let html = '';
+    if (item.heading) {
+      html += `<h1>${item.heading}</h1>`;
+    }
+    if (item.para) {
+      html += `<p>${item.para}</p>`;
+    }
+    if (item.heading2) {
+      html += `<h2>${item.heading2}</h2>`;
+    }
+    if (item.para2) {
+      html += `<p>${item.para2}</p>`;
+    }
+    if (item.para3) {
+      html += `<p>${item.para3}</p>`;
+    }
+    return html;
+  }
+
+  trackByIndex(index: number, item: any) {
+    return index;
+  }
 }

@@ -56,18 +56,20 @@
         <div class="PageContent-data">
           @for (item of PageContent; track $index) {
           @if (!item.ChildBody || item.ChildBody.length === 0) {
-          <h1>{{item.heading}}</h1>
+          <!-- <h1>{{item.heading}}</h1>
           <p [innerHTML]="item.para"></p>
           <h1>{{item.headinh2}}</h1>
           <p [innerHTML]="item.para2"></p>
-          <p>{{item.para3}}</p>
+          <p>{{item.para3}}</p> -->
+          <div [innerHTML]="getHtmlContent(item)"></div>
           }@else{
           @for (value of item.ChildBody; track $index) {
-          <h1>{{value.heading}}</h1>
+          <!-- <h1>{{value.heading}}</h1>
           <p>{{value.para}}</p>
           <p>{{value.heading2}}</p>
           <p>{{value.para2}}</p>
-          <p>{{value.para3}}</p>
+          <p>{{value.para3}}</p> -->
+          <div [innerHTML]="getHtmlContent(value)"></div>
           }
           }
           }
