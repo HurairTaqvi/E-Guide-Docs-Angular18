@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class SharingService {
   private singleService = 'json/services.json';
+  private contentService = 'json/content.json';
 
   constructor(private http: HttpClient) {}
 
@@ -13,8 +14,7 @@ export class SharingService {
     return this.http.get<any[]>(this.singleService);
   }
 
-  // {
-  //   return this.http.get<any>(this.singleService);
-  // }
-
+  getContentData() {
+    return this.http.get<any[]>(this.contentService);
+  }
 }

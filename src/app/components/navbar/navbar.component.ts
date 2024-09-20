@@ -27,7 +27,6 @@ export class NavbarComponent {
 
   routetoservicedetail(id: number) {
     // console.log('id' + id);
-
     this.route.navigate(['service'], {
       queryParams: {
         id: id,

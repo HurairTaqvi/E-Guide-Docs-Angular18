@@ -4,45 +4,86 @@
     <!-- Left Sidebar -->
     <div class="col-3 g-0 leftsidebar nz-menu">
       <ul nz-menu nzMode="inline">
-        @for (item of leftbarlist; track $index){
-        @for (x of item. description; track $index){
-        @for (y of x.sidebarlist; track $index) {
-        @if(y.sublist.length <= 0) { <li nz-menu-item (click)="selectedlist(y.id)">{{ y.name }}</li>
-          } @else {
-          <li nz-submenu [nzTitle]="y.name" nzIcon="appstore">
-            <ul>
-              @for (z of y.sublist; track $index) {
-              <li nz-menu-item>{{ z.name }}</li>
-              }
-            </ul>
-          </li>
-          } } } }
+        @for (item of contentData; track $index) {
+        @if (!item.ChildHeader || item.ChildHeader.length === 0) {
+        <!-- Single menu item without child -->
+        <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(item.ID); selectContent(item.ID)">
+          {{ item.ParentTitle }}
+        </li>
+        } @else {
+        <!-- Parent menu item with sublist -->
+        <li nz-submenu [nzTitle]="item.ParentTitle" nzIcon="appstore" style="margin-left: -25px;">
+          <ul>
+            <!-- Iterate over child headers and display submenu items -->
+            @for (child of item.ChildHeader; track $index) {
+            <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(child.ChildID); selectContent(item.ID)"
+              style="margin-left: 15px;">
+              {{ child.ChildtTitle }}
+            </li>
+            }
+          </ul>
+        </li>
+        }
+        }
       </ul>
     </div>
 
     <!-- News Feed -->
-    <div class="col-7 g-0 newsfeed-main">
-      <div class="newsfeed-content">
+    <div class="col-7 g-0 PageContent-main">
+      <div class="PageContent-content">
         <div class="my-breadcrumbs">
-          <a href="#"> Home </a>/ <a href="#"> Commerce-sdk </a>/
-          <a href="#"> Integration Methods </a>/
-          <a href="#"> Commerce Web Services </a>
+          <a href="/"> Home </a>/
+          <a href="#"> Commerce-sdk </a>/
+          <a href="/"> Integration Methods </a>/
+          <a href="/"> Commerce Web Services </a>
         </div>
         <br />
-        @for (item of newsfeed; track $index) {
-        <!-- @for (x of item; track $index) { -->
-        <!-- <li onclick="myFunction('overview')">{{x.name}}</li> -->
-        <div id="overview" [innerHTML]=item.body></div>
-        <!-- } -->
-        }
 
+        <!-- Page Content -->
+        <!-- <div class="PageContent-data">
+          @for (item of PageContent; track $index) {
+          @if (!item.ChildHeader || item.ChildHeader.length === 0) {
+          <h1>{{item.heading}}</h1>
+          <p>{{item.para}}</p>
+          } @else {
+          @for (data of item.ChildBody; track $index) {
+          <p>Testing</p>
+          }
+          }
+          }
+        </div> -->
+
+        <div class="PageContent-data">
+          @for (item of PageContent; track $index) {
+          @if (!item.ChildBody || item.ChildBody.length === 0) {
+          <h1>{{item.heading}}</h1>
+          <p [innerHTML]="item.para"></p>
+          <h1>{{item.headinh2}}</h1>
+          <p [innerHTML]="item.para2"></p>
+          <p>{{item.para3}}</p>
+          }@else{
+          @for (value of item.ChildBody; track $index) {
+          <h1>{{value.heading}}</h1>
+          <p>{{value.para}}</p>
+          <p>{{value.heading2}}</p>
+          <p>{{value.para2}}</p>
+          <p>{{value.para3}}</p>
+          }
+          }
+          }
+        </div>
       </div>
     </div>
 
     <!-- Right Side Bar -->
     <div class="col-2 rightbar">
       <h5>On this page</h5>
+      <ul>
 
+        <!-- @for (item of items; track $index) {} -->
+        <li></li>
+      </ul>
+      <!-- 
       <ul>
         @for (item of rightbarlist; track $index) {
         @for (x of item; track $index) {
@@ -50,7 +91,7 @@
         }
         }
 
-      </ul>
+      </ul> -->
       <!-- <li onclick="myFunction('overview')">{{item.name}}</li> -->
       <!-- <li onclick="myFunction('features')">Features</li>
       <li onclick="myFunction('workflow')">Workflow</li> -->

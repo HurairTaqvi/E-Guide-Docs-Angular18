@@ -12,51 +12,82 @@ import { json } from 'express';
   styleUrl: './services.component.css',
 })
 export class ServicesComponent {
-  leftbarlist: any[] = [];
-  rightbarlist: any[] = [];
-  newsfeed: any[] = [];
+  contentData: any[] = [];
+  parentContent: any[] = [];
+  SubList: any[] = [];
+  PageContent: any[] = [];
+  // rightbarlist: any[] = [];
 
   constructor(
     private sharingService: SharingService,
-    private ativatedroute: ActivatedRoute
+    private activatedroute: ActivatedRoute
   ) {}
-
   ngOnInit(): void {
-    this.ativatedroute.queryParams.subscribe((param: any) => {
-      this.leftbarlist = [];
-      const id = +param.id;
-      this.sharingService.getServiceData().subscribe({
+    // Get the ID from query params and fetch content data
+    this.activatedroute.queryParams.subscribe((param: any) => {
+      const id = +param.id; // Get the ParentID from the URL
+
+      // Fetch data based on ParentID
+      this.sharingService.getContentData().subscribe({
         next: (res) => {
-          // console.log(res);
-          const x = res.find((item: any) => item.id === id);
-          this.leftbarlist.push(x); // Names || LeftBar List
-          // console.log('Testing:' + this.leftbarlist);
+          const filteredData = res.filter((item: any) => item.ParentID === id);
+          this.contentData = filteredData; // Populate the contentData array
+          // console.log('Content Data:', JSON.stringify(this.contentData));
         },
       });
     });
   }
 
-  selectedlist(id: number) {
-    this.rightbarlist = [];
-    this.newsfeed = [];
-
-    // RightBar List
-    this.leftbarlist.map((item) => {
-      item.description.map((x: any) => {
-        // const list = x.sidebarlist.find((y: any) => y.id === id);
-        const list = x.sidebarlist; // Sidebarlist
-        this.rightbarlist.push(list); // Sidebarlist || Rightbar
-      });
+  // Function to handle category selection and fetch child elements
+  selectCategory(id: number): void {
+    // console.log('Selected Category ID:', id);
+    // Fetch new data for the selected category and update the SubList
+    this.sharingService.getContentData().subscribe({
+      next: (res) => {
+        const selectedItem = res.find((item: any) => item.ID === id);
+        // If the item has a child header, populate the SubList
+        if (
+          selectedItem &&
+          selectedItem.ChildHeader &&
+          selectedItem.ChildHeader.length > 0
+        ) {
+          this.SubList = selectedItem.ChildHeader;
+          // console.log('SubList:', this.SubList);
+        } else {
+          // console.log('No sublist found.');
+          this.SubList = []; // Clear SubList if no child headers exist
+        }
+      },
     });
+  }
 
-    console.log('this.rightbarlist:' + JSON.stringify(this.rightbarlist));
-    //News Feed
-    const jk = this.rightbarlist[0];
-    console.log('this.rightbarlist:' + JSON.stringify(jk));
-    jk.map((item: any) => {
-      const desc = item.description;
-      this.newsfeed.push(desc);
-      console.log('desc:' + JSON.stringify(desc));
+  // Function to handle content selection and update page content
+  selectContent(id: number): void {
+    this.sharingService.getContentData().subscribe({
+      next: (res) => {
+        const selectedItem = res.find((item: any) => item.ID === id);
+        if (selectedItem && selectedItem.ParentBody) {
+          // Main Body
+          const x = selectedItem.ParentBody;
+
+          //RightBar
+          // const y = selectedItem.ParentBody.filter((e: any) =>
+          //   e.indludes('heading')
+          // );
+          // console.log(y);
+
+          if (!selectedItem.ChildHeader) {
+            this.PageContent = x;
+          } else {
+            const ChildBody = selectedItem.ChildHeader;
+            ChildBody.map((e: any) => {
+              this.PageContent = e.ChildBody;
+            });
+          }
+        } else {
+          this.PageContent = []; // Clear PageContent if no content exists
+        }
+      },
     });
   }
 }
