@@ -43,16 +43,18 @@
         <div class="PageContent-data">
           @for (item of PageContent; track $index) {
           @if (ChildID == 101) {
+          <!-- Elavon Commerce SDK overview -->
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p [innerHTML]="item.para"></p>
           <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
           <p [innerHTML]="item.para2"></p>
-          <p>{{item.para3}}</p>
+          <h1 id="{{item.heading3}}">{{item.heading3}}</h1>
+          <img src={{item.img}} alt="Workflow of Elavon Commerce SDK">
           }
           @else if(ChildID == 102){
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p [innerHTML]="item.para"></p>
-          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
           <p [innerHTML]="item.para2"></p>
           <p [innerHTML]="item.para3"></p>
           <p [innerHTML]="item.para4"></p>
@@ -61,14 +63,14 @@
           @else if (ChildID == 202) {
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p>{{item.para}}</p>
-          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
           <p>{{item.para2}}</p>
           <p>{{item.para3}}</p>
           }
           @else if (ChildID == 302) {
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p>{{item.para}}</p>
-          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
           <p>{{item.para2}}</p>
           <p>{{item.para3}}</p>
           }
@@ -88,6 +90,7 @@
       <ul>
         @for (heading of rightbarlist; track $index) {
         <li (click)="Scrolltotext(heading)"> {{ heading }} </li>
+        <div style="height: 1px; width: 100%; background-color: #007bff;"></div>
         }
       </ul>
     </div>

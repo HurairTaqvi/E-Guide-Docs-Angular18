@@ -1,0 +1,89 @@
+{
+    ""chainDetails"": {
+      ""chainProfile"": {
+        ""chainId"": ""232323""
+      }
+    },
+    ""bankingDetails"": {
+      ""creditDepositAccount"": {
+        ""currency"": ""32423"",
+        ""institution"": ""d"",
+        ""transit"": ""ff"",
+        ""accountNumber"": ""gg""
+      },
+      ""additionalBankingAccounts"": {
+        ""id"": 0,
+        ""merchantId"": 0,
+        ""accountType"": ""dd"",
+        ""currencyCode"": 0,
+        ""institution"": ""ff"",
+        ""transit"": ""ss"",
+        ""accountNumber"": ""vv""
+      }
+    },
+    ""businessDetails"": {
+      ""masterCardVolume"": 0,
+      ""visaVolume"": 0,
+      ""discoverVolume"": 0,
+      ""unionPayVolume"": 0,
+      ""interacVolume"": 0,
+      ""amexVolume"": 0,
+      ""mcc"": ""3"",
+      ""avgTicketSize"": 0,
+      ""isSeasonalMerchant"": 0,
+      ""maxTransaction"": 0,
+      ""directSelling"": 0,
+      ""moto"": 0,
+      ""ecommerce"": 0,
+      ""businessURL"": ""string"",
+      ""serviceDeliverToCanada"": 0,
+      ""serviceDeliverToUS"": 0
+    },
+    ""merchantDetails"": {
+      ""contact"": {
+        ""firstName"": ""string"",
+        ""lastName"": ""string"",
+        ""phone"": ""string""
+      },
+      ""merchant"": {
+        ""language"": 0,
+        ""legalName"": ""string"",
+        ""operatingAsName"": ""string"",
+        ""cardHolderName"": ""string"",
+        ""yearsOfOwnership"": 0,
+        ""customerServicePhoneNumber"": ""string"",
+        ""email"": ""string""
+      },
+      ""locationAddress"": {
+        ""addressNumber"": ""string"",
+        ""postalCode"": ""string"",
+        ""city"": ""abc"",
+        ""streetName"": ""string"",
+        ""country"": ""ww"",
+        ""telephone"": ""string"",
+        ""province"": ""adas""
+      }
+    },
+    ""businessActivity"": {
+      ""dropShipping"": 0
+    },
+    ""securityDetails"": {
+      ""signingOfficers"": {
+        ""allowCreditReport"": 0,
+        ""firstName"": ""string"",
+        ""lastName"": ""string"",
+        ""birthDate"": ""string"",
+        ""percentageOwnership"": 0,
+        ""title"": 0,
+        ""address"": {
+          ""addressNumber"": ""string"",
+          ""telephone"": ""string"",
+          ""postalCode"": ""string"",
+          ""city"": ""asdsa"",
+          ""streetName"": ""string"",
+          ""country"":"" vsdgv"",
+          ""province"": 0
+        }
+      }
+    }
+  }

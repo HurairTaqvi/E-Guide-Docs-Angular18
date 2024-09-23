@@ -104,6 +104,37 @@
 
 .rightbar li {
   cursor: pointer;
-  color: #007bff;
+  color: rgb(2, 1, 20);
   margin-bottom: 5px;
+}
+
+.PageContent-main h1 {
+  padding: 10 0;
+  margin: 10 0;
+}
+
+/* .PageContent-main p {
+} */
+
+.rightbar {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: large;
+  text-align: center;
+}
+
+.rightbar h5 {
+  cursor: auto;
+  margin-top: 20px;
+  text-transform: uppercase;
+  color: rgb(2, 1, 20);
+}
+
+.rightbar ul {
+  padding: 10px;
+}
+
+.rightbar li:hover {
+  background-color: rgb(2, 1, 20);
+  color: antiquewhite;
 }
