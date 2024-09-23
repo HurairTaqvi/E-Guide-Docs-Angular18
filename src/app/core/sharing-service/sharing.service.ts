@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+
 export class SharingService {
   private singleService = 'json/services.json';
   private contentService = 'json/content.json';

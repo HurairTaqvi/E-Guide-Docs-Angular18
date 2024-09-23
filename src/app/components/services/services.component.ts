@@ -16,7 +16,10 @@ export class ServicesComponent {
   parentContent: any[] = [];
   SubList: any[] = [];
   PageContent: any[] = [];
-  // rightbarlist: any[] = [];
+  ChildID: number = 0;
+  rightbarlist: any[] = [];
+  headingsList: any[] = [];
+  RightBarHeadingID: any[] = [];
 
   constructor(
     private sharingService: SharingService,
@@ -70,18 +73,45 @@ export class ServicesComponent {
           // Main Body
           const x = selectedItem.ParentBody;
 
-          //RightBar
-          // const y = selectedItem.ParentBody.filter((e: any) =>
-          //   e.indludes('heading')
-          // );
-          // console.log(y);
-
+          // Dynamic Data for Body JSON
           if (!selectedItem.ChildHeader) {
-            this.PageContent = x;
+            this.rightbarlist = [];
+            this.ChildID = selectedItem.ID; //ID from the Parent
+            // console.log('If' + this.ChildID);
+            this.PageContent = x; //Main Array of ParentBody
+
+            // //Parent Right Bar
+            x.map((j: any) => {
+              Object.keys(j).forEach((key) => {
+                if (key.includes('heading')) {
+                  this.rightbarlist.push(j[key]);
+                }
+              });
+            });
+
+            //Right Bar Scroll Function Child Body
           } else {
+            this.rightbarlist = [];
+
             const ChildBody = selectedItem.ChildHeader;
             ChildBody.map((e: any) => {
-              this.PageContent = e.ChildBody;
+              this.ChildID = e.ChildID; //ID from the Child
+              // console.log('Else' + this.ChildID);
+              const ChildBody = selectedItem.ChildHeader;
+              ChildBody.map((e: any) => {
+                this.PageContent = e.ChildBody; //Main Array of ChildBody
+
+                // //Child Right Bar
+                e.ChildBody.map((i: any) => {
+                  Object.keys(i).forEach((key) => {
+                    if (key.includes('heading')) {
+                      this.rightbarlist.push(i[key]);
+                    }
+                  });
+                });
+
+                //Right Bar Scroll Function Main Body
+              });
             });
           }
         } else {
@@ -91,27 +121,24 @@ export class ServicesComponent {
     });
   }
 
-  getHtmlContent(item: any): string {
-    let html = '';
-    if (item.heading) {
-      html += `<h1>${item.heading}</h1>`;
-    }
-    if (item.para) {
-      html += `<p>${item.para}</p>`;
-    }
-    if (item.heading2) {
-      html += `<h2>${item.heading2}</h2>`;
-    }
-    if (item.para2) {
-      html += `<p>${item.para2}</p>`;
-    }
-    if (item.para3) {
-      html += `<p>${item.para3}</p>`;
-    }
-    return html;
-  }
+  Scrolltotext(itemHeading: string): void {
+    // Find the heading in PageContent that matches itemHeading
+    const headingElement = this.PageContent.flatMap((item) =>
+      Object.keys(item)
+        .filter((key) => key.includes('heading') && item[key] === itemHeading)
+        .map((key) => item[key])
+    )
+      .map((heading) => document.getElementById(heading))
+      .find((element) => element);
 
-  trackByIndex(index: number, item: any) {
-    return index;
+    if (headingElement) {
+      headingElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
+    } else {
+      console.warn(`Heading "${itemHeading}" not found.`);
+    }
   }
 }

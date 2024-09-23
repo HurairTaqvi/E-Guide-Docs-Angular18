@@ -28,6 +28,7 @@
       </ul>
     </div>
 
+
     <!-- News Feed -->
     <div class="col-7 g-0 PageContent-main">
       <div class="PageContent-content">
@@ -41,48 +42,54 @@
 
         <div class="PageContent-data">
           @for (item of PageContent; track $index) {
-          @if (!item.ChildBody || item.ChildBody.length === 0) {
-          <!-- <h1>{{item.heading}}</h1>
+          @if (ChildID == 101) {
+          <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p [innerHTML]="item.para"></p>
-          <h1>{{item.headinh2}}</h1>
+          <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
           <p [innerHTML]="item.para2"></p>
-          <p>{{item.para3}}</p> -->
-          <div [innerHTML]="getHtmlContent(item)"></div>
-          }@else{
-          @for (value of item.ChildBody; track $index) {
-          <!-- <h1>{{value.heading}}</h1>
-          <p>{{value.para}}</p>
-          <p>{{value.heading2}}</p>
-          <p>{{value.para2}}</p>
-          <p>{{value.para3}}</p> -->
-          <div [innerHTML]="getHtmlContent(value)"></div>
+          <p>{{item.para3}}</p>
           }
+          @else if(ChildID == 102){
+          <h1 id="{{item.heading}}">{{item.heading}}</h1>
+          <p [innerHTML]="item.para"></p>
+          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <p [innerHTML]="item.para2"></p>
+          <p [innerHTML]="item.para3"></p>
+          <p [innerHTML]="item.para4"></p>
+          <p [innerHTML]="item.para5"></p>
+          }
+          @else if (ChildID == 202) {
+          <h1 id="{{item.heading}}">{{item.heading}}</h1>
+          <p>{{item.para}}</p>
+          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <p>{{item.para2}}</p>
+          <p>{{item.para3}}</p>
+          }
+          @else if (ChildID == 302) {
+          <h1 id="{{item.heading}}">{{item.heading}}</h1>
+          <p>{{item.para}}</p>
+          <h2 id="{{item.heading2}}">{{item.heading2}}</h2>
+          <p>{{item.para2}}</p>
+          <p>{{item.para3}}</p>
+          }
+          @else{
+          <p>Data Not Found</p>
           }
           }
         </div>
+
       </div>
     </div>
 
-    <!-- Right Side Bar -->
+
+    <!-- Right Sidebar -->
     <div class="col-2 rightbar">
       <h5>On this page</h5>
       <ul>
-
-        <!-- @for (item of items; track $index) {} -->
-        <li></li>
+        @for (heading of rightbarlist; track $index) {
+        <li (click)="Scrolltotext(heading)"> {{ heading }} </li>
+        }
       </ul>
-      <!-- 
-      <ul>
-        @for (item of rightbarlist; track $index) {
-        @for (x of item; track $index) {
-        <li onclick="myFunction('overview')">{{x.name}}</li>
-        }
-        }
-
-      </ul> -->
-      <!-- <li onclick="myFunction('overview')">{{item.name}}</li> -->
-      <!-- <li onclick="myFunction('features')">Features</li>
-      <li onclick="myFunction('workflow')">Workflow</li> -->
     </div>
   </div>
 </div>

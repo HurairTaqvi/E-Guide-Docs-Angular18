@@ -77,3 +77,33 @@
 .innerhtml-styling h1 {
   color: red;
 }
+
+.container-fluid {
+  overflow-y: auto;
+}
+
+.leftsidebar {
+  background-color: #f8f9fa;
+}
+
+.PageContent-main {
+  padding: 20px;
+}
+
+.rightbar {
+  background-color: #f8f9fa;
+  padding: 10px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.rightbar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rightbar li {
+  cursor: pointer;
+  color: #007bff;
+  margin-bottom: 5px;
+}
