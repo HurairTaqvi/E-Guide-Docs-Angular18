@@ -36,6 +36,8 @@ export class ServicesComponent {
           const filteredData = res.filter((item: any) => item.ParentID === id);
           this.contentData = filteredData; // Populate the contentData array
           // console.log('Content Data:', JSON.stringify(this.contentData));
+          this.selectCategory(1);
+          this.selectContent(101);
         },
       });
     });
@@ -69,6 +71,8 @@ export class ServicesComponent {
     this.sharingService.getContentData().subscribe({
       next: (res) => {
         const selectedItem = res.find((item: any) => item.ID === id);
+        console.log(selectedItem);
+
         if (selectedItem && selectedItem.ParentBody) {
           // Main Body
           const x = selectedItem.ParentBody;

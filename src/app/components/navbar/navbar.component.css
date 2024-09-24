@@ -3,8 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  /* border: 1px solid grey;   */
-  background-color: rgb(218, 216, 216);
+  border-bottom: 0.1px solid rgb(214, 207, 207);
+  border-color: #d3d1d1;
+  background-color: rgb(255, 255, 255);
   color: rgb(3, 3, 3);
   position: fixed; /* Stick it to the top */
   top: 0; /* Align it to the top */
@@ -35,9 +36,11 @@
 }
 
 .dropdown-button {
+  /* z-index: 1; */
   font-size: 20px;
-  background-color: #060531;
-  color: white;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  color: #060531;
   border-radius: 15px;
   padding: 10px;
   border: none;

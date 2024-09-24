@@ -40,7 +40,7 @@
         </div>
         <br /> -->
 
-        <div class="PageContent-data">
+        <div class="PageContent-data" ngSkipHydration>
           @for (item of PageContent; track $index) {
           @if (ChildID == 101) {
           <!-- Elavon Commerce SDK overview -->
@@ -51,6 +51,7 @@
           <h1 id="{{item.heading3}}">{{item.heading3}}</h1>
           <img src={{item.img}} alt="Workflow of Elavon Commerce SDK">
           }
+
           @else if(ChildID == 102){
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p [innerHTML]="item.para"></p>
@@ -60,6 +61,7 @@
           <p [innerHTML]="item.para4"></p>
           <p [innerHTML]="item.para5"></p>
           }
+
           @else if (ChildID == 202) {
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p>{{item.para}}</p>
@@ -67,6 +69,7 @@
           <p>{{item.para2}}</p>
           <p>{{item.para3}}</p>
           }
+
           @else if (ChildID == 302) {
           <h1 id="{{item.heading}}">{{item.heading}}</h1>
           <p>{{item.para}}</p>
@@ -74,6 +77,8 @@
           <p>{{item.para2}}</p>
           <p>{{item.para3}}</p>
           }
+
+
           @else{
           <p>Data Not Found</p>
           }
@@ -82,7 +87,6 @@
 
       </div>
     </div>
-
 
     <!-- Right Sidebar -->
     <div class="col-2 rightbar">
