@@ -47,8 +47,8 @@
 }
 
 .PageContent-content img {
-  width: 100%;
-  display: block;
+  max-width: 90%;
+  /* flex-wrap: wrap; */
 }
 
 .leftsidebar {
@@ -65,16 +65,17 @@
 
 .rightbar {
   cursor: pointer;
-  padding: 10px;
+  padding: 20px;
   border-left: 1px solid rgb(209, 204, 204);
 }
 
 .rightbar li {
+  padding: 10px;
   margin-top: 10px;
 }
 
 .rightbar li:hover {
-  padding: 10px;
+  /* padding: 10px; */
   background-color: rgb(146, 89, 18);
   color: antiquewhite;
 }
