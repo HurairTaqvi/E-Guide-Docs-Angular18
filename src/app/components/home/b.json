@@ -1,87 +1,87 @@
 {
-    ""chainDetails"": {
-        ""chainProfile"": {
-            ""chainId"": ""0030600058938""
-        }
-    },
-    ""bankingDetails"": {
-        ""creditDepositAccount"": {
-            ""currency"": ""CAD"",
-            ""institution"": ""00003"",
-            ""transit"": ""00543"",
-            ""accountNumber"": ""3030303""
-        },
-        ""additionalBankingAccounts"": []
-    },
-    ""businessDetails"": {
-        ""masterCardVolume"": 10000,
-        ""visaVolume"": 10000,
-        ""discoverVolume"": 500,
-        ""unionPayVolume"": 500,
-        ""interacVolume"": 10000,
-        ""amexVolume"": 4000,
-        ""mcc"": ""5969"",
-        ""avgTicketSize"": 100,
-        ""isSeasonalMerchant"": false,
-        ""maxTransaction"": 400,
-        ""directSelling"": 0,
-        ""moto"": 0,
-        ""ecommerce"": 100,
-        ""businessURL"": ""https://www.test-michelle-marketing.com"",
-        ""serviceDeliverToCanada"": true,
-        ""serviceDeliverToUS"": false
-    },
-    ""merchantDetails"": {
-        ""contact"": {
-            ""firstName"": ""Test-Michelle"",
-            ""lastName"": ""Smith"",
-            ""phone"": ""5197778888""
-        },
-        ""merchant"": {
-            ""language"": ""en"",
-            ""legalName"": ""Test - Michelle Marketing Co."",
-            ""operatingAsName"": ""Test-Michelle Marketing CO."",
-            ""cardHolderName"": ""Test-Michelle Marketing Co."",
-            ""yearsOfOwnership"": 8,
-            ""monthsOfOwnership"": 4,
-            ""customerServicePhoneNumber"": ""5198889999"",
-            ""email"": ""mailto:test-michellemarketing@test.com""
-        },
-        ""locationAddress"": {
-            ""addressNumber"": ""9999"",
-            ""streetName"": ""Kitchener Avenue"",
-            ""telephone"": ""5198889999"",
-            ""postalCode"": ""N5Z2B2"",
-            ""city"": ""London"",
-            ""province"": ""ON"",
-            ""country"": ""CA""
-        }
-    },
-    ""businessActivity"": {
-        ""dropShipping"": false
-    },
-    ""securityDetails"": {
-        ""legalEntity"": {
-            ""typeOfBusiness"": ""Sole Proprietor""
-        },
-        ""signingOfficers"": [
-            {
-                ""allowCreditReport"": true,
-                ""firstName"": ""Test-Michelle"",
-                ""lastName"": ""Smith"",
-                ""address"": {
-                    ""addressNumber"": ""890"",
-                    ""telephone"": ""5197778888"",
-                    ""postalCode"": ""J3E4R5"",
-                    ""city"": ""London"",
-                    ""province"": ""ON"",
-                    ""streetName"": ""Kitchener Avenue"",
-                    ""country"": ""CA""
-                },
-                ""birthDate"": ""1979-03-01"",
-                ""percentageOwnership"": 100,
-                ""title"": ""OWNER""
-            }
-        ]
+  "chainDetails": {
+    "chainProfile": {
+      "chainId": "0030600058938"
     }
+  },
+  "bankingDetails": {
+    "creditDepositAccount": {
+      "currency": "CAD",
+      "institution": "00003",
+      "transit": "00543",
+      "accountNumber": "3030303"
+    },
+    "additionalBankingAccounts": []
+  },
+  "businessDetails": {
+    "masterCardVolume": 10000,
+    "visaVolume": 10000,
+    "discoverVolume": 500,
+    "unionPayVolume": 500,
+    "interacVolume": 10000,
+    "amexVolume": 4000,
+    "mcc": "5969",
+    "avgTicketSize": 100,
+    "isSeasonalMerchant": false,
+    "maxTransaction": 400,
+    "directSelling": 0,
+    "moto": 0,
+    "ecommerce": 100,
+    "businessURL": "https://www.test-michelle-marketing.com",
+    "serviceDeliverToCanada": true,
+    "serviceDeliverToUS": false
+  },
+  "merchantDetails": {
+    "contact": {
+      "firstName": "Test-Michelle",
+      "lastName": "Smith",
+      "phone": "5197778888"
+    },
+    "merchant": {
+      "language": "en",
+      "legalName": "Test - Michelle Marketing Co.",
+      "operatingAsName": "Test-Michelle Marketing CO.",
+      "cardHolderName": "Test-Michelle Marketing Co.",
+      "yearsOfOwnership": 8,
+      "monthsOfOwnership": 4,
+      "customerServicePhoneNumber": "5198889999",
+      "email": "mailto:test-michellemarketing@test.com"
+    },
+    "locationAddress": {
+      "addressNumber": "9999",
+      "streetName": "Kitchener Avenue",
+      "telephone": "5198889999",
+      "postalCode": "N5Z2B2",
+      "city": "London",
+      "province": "ON",
+      "country": "CA"
+    }
+  },
+  "businessActivity": {
+    "dropShipping": false
+  },
+  "securityDetails": {
+    "legalEntity": {
+      "typeOfBusiness": "Sole Proprietor"
+    },
+    "signingOfficers": [
+      {
+        "allowCreditReport": true,
+        "firstName": "Test-Michelle",
+        "lastName": "Smith",
+        "address": {
+          "addressNumber": "890",
+          "telephone": "5197778888",
+          "postalCode": "J3E4R5",
+          "city": "London",
+          "province": "ON",
+          "streetName": "Kitchener Avenue",
+          "country": "CA"
+        },
+        "birthDate": "1979-03-01",
+        "percentageOwnership": 100,
+        "title": "OWNER"
+      }
+    ]
+  }
 }
