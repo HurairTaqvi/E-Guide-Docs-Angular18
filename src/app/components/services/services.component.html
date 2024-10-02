@@ -30,7 +30,7 @@
       </ul>
     </div>
 
-    <!-- News Feed -->
+    <!-- Page Content -->
     <!-- <div class="col-7 g-0 PageContent-main"> -->
     <div class=" col-7 g-0 PageContent-content">
       @for (item of PageContent; track $index) {
@@ -55,33 +55,30 @@
 
       @else if (ChildID == 202) {
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
-      <p>{{item.para}}</p>
+      <p [innerHTML]="item.para"></p>
       <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
-      <p>{{item.para2}}</p>
-      <p>{{item.para3}}</p>
+      <p [innerHTML]="item.para2"></p>
+      <p [innerHTML]="item.para3">{{item.para3}}</p>
       }
 
       @else if (ChildID == 302) {
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
-      <p>{{item.para}}</p>
+      <p [innerHTML]="item.para3"></p>
       <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
-      <p>{{item.para2}}</p>
-      <p>{{item.para3}}</p>
+      <p [innerHTML]="item.para2"></p>
+      <p [innerHTML]="item.para3"></p>
       }
 
       @else{
       <p>Data Not Found</p>
       }
       }
-      <!-- <div class="PageContent-data" ngSkipHydration>
-        </div> -->
-
-      <!-- </div> -->
     </div>
 
     <!-- Right Sidebar -->
     <div class="col-2 rightbar">
       <h5>On this page</h5>
+      
       <ul>
         @for (heading of rightbarlist; track $index) {
         <li (click)="Scrolltotext(heading)"> {{ heading }} </li>
@@ -89,5 +86,6 @@
         }
       </ul>
     </div>
+
   </div>
 </div>

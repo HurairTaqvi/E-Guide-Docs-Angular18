@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharingService } from '../../core/sharing-service/sharing.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-services',
   standalone: true,
   imports: [RouterModule, NzMenuModule],
   templateUrl: './services.component.html',
-  styleUrl: './services.component.css',
+  styleUrls: ['./services.component.css'], // Fixed 'styleUrl' to 'styleUrls'
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
   contentData: any[] = [];
   parentContent: any[] = [];
   SubList: any[] = [];
@@ -22,60 +23,60 @@ export class ServicesComponent {
 
   constructor(
     private sharingService: SharingService,
-    private activatedroute: ActivatedRoute
+    private activatedroute: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object // Injecting platform ID
   ) {}
+
   ngOnInit(): void {
-    // Get the ID from query params and fetch content data
-    this.activatedroute.queryParams.subscribe((param: any) => {
-      const id = +param.id; // Get the ParentID from the URL
-      sessionStorage.setItem('myParam', JSON.stringify(id));
+    // Check if the current platform is a browser
+    if (isPlatformBrowser(this.platformId)) {
+      let sessionStorage: Storage = window.sessionStorage;
 
-      let ParamId = sessionStorage.getItem('myParam');
-      // Fetch data based on ParentID
-      this.sharingService.getContentData().subscribe({
-        next: (res) => {
-          const filteredData = res.filter((item: any) => item.ParentID === id);
-          this.contentData = filteredData; // Populate the contentData array
+      // Get the ID from query params and fetch content data
+      this.activatedroute.queryParams.subscribe((param: any) => {
+        const id = +param.id; // Get the ParentID from the URL
+        sessionStorage.setItem('myParam', JSON.stringify(id));
 
-          if (ParamId) {
-            // Convert ParamId back to number and pass to selectCategory
-            const numericParamId = JSON.parse(ParamId);
+        let ParamId = sessionStorage.getItem('myParam');
 
-            // Assuming selectCategory expects a number, pass it directly
-            this.selectCategory(numericParamId);
-          }
+        // Fetch data based on ParentID
+        this.sharingService.getContentData().subscribe({
+          next: (res) => {
+            const filteredData = res.filter(
+              (item: any) => item.ParentID === id
+            );
+            this.contentData = filteredData; // Populate the contentData array
 
-          if (ParamId == '1') {
-            this.selectContent(101);
-          } else if (ParamId == '2') {
-            this.selectContent(202);
-          } else if (ParamId == '3') {
-            this.selectContent(302);
-          }
-        },
+            if (ParamId) {
+              // Convert ParamId back to number and pass to selectCategory
+              const numericParamId = JSON.parse(ParamId);
+
+              // Assuming selectCategory expects a number, pass it directly
+              this.selectCategory(numericParamId);
+            }
+
+            // Handle specific cases for ParamId
+            if (ParamId === '1') {
+              this.selectContent(101);
+            } else if (ParamId === '2') {
+              this.selectContent(202);
+            } else if (ParamId === '3') {
+              this.selectContent(302);
+            }
+          },
+        });
       });
-    });
+    }
   }
 
   // Function to handle category selection and fetch child elements
   selectCategory(id: number): void {
-    // console.log('Selected Category ID:', id);
     // Fetch new data for the selected category and update the SubList
     this.sharingService.getContentData().subscribe({
       next: (res) => {
         const selectedItem = res.find((item: any) => item.ID === id);
         // If the item has a child header, populate the SubList
-        if (
-          selectedItem &&
-          selectedItem.ChildHeader &&
-          selectedItem.ChildHeader.length > 0
-        ) {
-          this.SubList = selectedItem.ChildHeader;
-          // console.log('SubList:', this.SubList);
-        } else {
-          // console.log('No sublist found.');
-          this.SubList = []; // Clear SubList if no child headers exist
-        }
+        this.SubList = selectedItem?.ChildHeader || []; // Clear SubList if no child headers exist
       },
     });
   }
@@ -87,48 +88,36 @@ export class ServicesComponent {
         const selectedItem = res.find((item: any) => item.ID === id);
 
         if (selectedItem && selectedItem.ParentBody) {
-          // Main Body
-          const x = selectedItem.ParentBody;
+          const x = selectedItem.ParentBody; // Main Body
+          this.ChildID = selectedItem.ChildHeader ? 0 : selectedItem.ID; // ID from the Parent
 
-          // Dynamic Data for Body JSON
           if (!selectedItem.ChildHeader) {
             this.rightbarlist = [];
-            this.ChildID = selectedItem.ID; //ID from the Parent
-            // console.log('If' + this.ChildID);
-            this.PageContent = x; //Main Array of ParentBody
-            // console.log(this.PageContent);
+            this.PageContent = x; // Main Array of ParentBody
 
-            // //Parent Right Bar
-            x.map((j: any) => {
+            // Populate rightbarlist
+            x.forEach((j: any) => {
               Object.keys(j).forEach((key) => {
                 if (key.includes('heading')) {
                   this.rightbarlist.push(j[key]);
                 }
               });
             });
-
-            //Right Bar Scroll Function Child Body
           } else {
             this.rightbarlist = [];
-
             const ChildBody = selectedItem.ChildHeader;
-            ChildBody.map((e: any) => {
-              this.ChildID = e.ChildID; //ID from the Child
-              console.log('Else' + this.ChildID);
-              const ChildBody = selectedItem.ChildHeader;
-              ChildBody.map((e: any) => {
-                this.PageContent = e.ChildBody; //Main Array of ChildBody
 
-                // //Child Right Bar
-                e.ChildBody.map((i: any) => {
-                  Object.keys(i).forEach((key) => {
-                    if (key.includes('heading')) {
-                      this.rightbarlist.push(i[key]);
-                    }
-                  });
+            ChildBody.forEach((e: any) => {
+              this.ChildID = e.ChildID; // ID from the Child
+              this.PageContent = e.ChildBody; // Main Array of ChildBody
+
+              // Populate rightbarlist for ChildBody
+              e.ChildBody.forEach((i: any) => {
+                Object.keys(i).forEach((key) => {
+                  if (key.includes('heading')) {
+                    this.rightbarlist.push(i[key]);
+                  }
                 });
-
-                //Right Bar Scroll Function Main Body
               });
             });
           }
@@ -140,7 +129,6 @@ export class ServicesComponent {
   }
 
   Scrolltotext(itemHeading: string): void {
-    // Find the heading in PageContent that matches itemHeading
     const headingElement = this.PageContent.flatMap((item) =>
       Object.keys(item)
         .filter((key) => key.includes('heading') && item[key] === itemHeading)

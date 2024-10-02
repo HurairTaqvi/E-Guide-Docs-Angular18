@@ -1,18 +1,11 @@
-.my-breadcrumbs {
-  cursor: pointer;
-}
-
-.my-breadcrumbs a {
-  font-size: 14px;
-  display: inline;
-  color: grey;
-  text-decoration: none;
-  /* font-style: italic; */
+.PageContent-main::-webkit-scrollbar,
+.rightbar::-webkit-scrollbar,
+.leftsidebar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
 }
 
 .PageContent-main::-webkit-scrollbar {
   width: 0;
-  /* border: 1px solid grey; */
   height: calc(100vh - 72px);
   overflow: auto;
 }
@@ -21,14 +14,14 @@
   /* border: 1px solid blue; */
   height: calc(100vh - 72px);
   overflow: auto;
+  scrollbar-width: none;
 }
 
 .PageContent-content {
-  height: 200vh;
+  /* height: 200vh; */
   text-align: justify;
   font-family: Arial, Helvetica, sans-serif;
-  /* border: 1px solid red; */
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .PageContent-content h1 {
@@ -47,11 +40,15 @@
 }
 
 .PageContent-content img {
-  max-width: 90%;
-  /* flex-wrap: wrap; */
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .leftsidebar {
+  top: 0;
+  max-height: 88vh;
+  position: sticky;
+  overflow-y: scroll;
   border-right: 1px solid rgb(209, 204, 204);
   font-weight: 500;
   text-decoration: none !important;
@@ -61,23 +58,6 @@
   font-size: larger;
   margin-top: 10px;
   font-weight: 500;
-}
-
-.rightbar {
-  cursor: pointer;
-  padding: 20px;
-  border-left: 1px solid rgb(209, 204, 204);
-}
-
-.rightbar li {
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.rightbar li:hover {
-  /* padding: 10px; */
-  background-color: rgb(146, 89, 18);
-  color: antiquewhite;
 }
 
 .innerhtml-styling h1 {
@@ -96,48 +76,44 @@
   padding: 20px;
 }
 
-.rightbar {
-  background-color: #f8f9fa;
-  padding: 10px;
-  max-height: 100%;
-  overflow-y: auto;
-}
-
-.rightbar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.rightbar li {
-  cursor: pointer;
-  color: rgb(2, 1, 20);
-  margin-bottom: 5px;
-}
-
 .PageContent-main h1 {
   padding: 10 0;
   margin: 10 0;
 }
 
-/* .PageContent-main p {
-} */
-
 .rightbar {
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: large;
   text-align: center;
+  top: 0;
+  max-height: 88vh;
+  position: sticky;
+  overflow-y: scroll;
+  cursor: pointer;
+  /* max-height: calc(100vh - 72vh); */
+  /* -ms-overflow-style: none; */
+  border-left: 1px solid rgb(209, 204, 204);
 }
 
 .rightbar h5 {
   cursor: auto;
   margin-top: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   color: rgb(2, 1, 20);
 }
 
 .rightbar ul {
   padding: 10px;
+  list-style: none;
+}
+
+.rightbar li {
+  line-height: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: rgb(2, 1, 20);
+  margin-bottom: 5px;
 }
 
 .rightbar li:hover {

@@ -5,7 +5,7 @@
     "ParentTitle": "Elavon Commerce SDK overview",
     "ParentBody": [
       {
-        "heading": "Elavon Commerce SDK overview",
+        "heading": "Elavon Commerce SDK Overview",
         "para": "Elavon Commerce SDK® is a comprehensive solution that accelerates any business’s ability to implement a secure, EMV-compliant payment product. We have combined global payment processing, EMV-certified coding, end-to-end encryption and tokenization, and hardware support for printers, terminals, and mobile devices into one easy-to-integrate package.<br>Commerce SDK allows your mobile-based and/or desktop-based point-of-sale (POS) solution to communicate with payment terminals and printers, as well as process payments through Elavon’s Converge payment gateway.",
         "heading2": "Features",
         "para2": "<ul><li><p><strong>Pre-certified package.</strong> Skip the lengthy card network certification processes by using our pre-certified solution. We connect certified hardware and software with a single integration point.</p></li><li><p><strong>Encryption of card data.</strong> Card data is encrypted on the terminal when card data is inserted, tapped, swiped, or key-entered, and that data remains encrypted until it reaches our secure environment.</p></li><li><p><strong>Support for multiple operating systems.</strong> Whether you are coding for iOS, Android, or Windows, Commerce SDK streamlines the process of adding payments to your application.</p></li><li><p><strong>Optimize the cost of payment acceptance.</strong> Provide your customers with a solution designed to optimize their cost of payment acceptance of credit, debit, and everything in-between.</p></li><li><p><strong>Built around an omni-commerce platform.</strong> Enable your customers to easily accept payment transactions. Whether online, in-store, on the go, or any combination of.</p></li><li><p><strong>Payment devices</a> for today’s business environments.</strong> Offer your customers the flexibility of accepting payments wherever their business takes them. We offer standard countertop, as well as mobile devices to offer the flexibility to accept payments on the go.</p></li></ul>",
@@ -72,7 +72,7 @@
           {
             "heading": "Commerce Web Services",
             "para": "Commerce Web Services (CWS) provides an HTTP API in the form of a web server that runs on the same workstation to which the payment terminal (card reader) and printer are connected.",
-            "heading2": "Commerce Web Services",
+            "heading2": "Introduction",
             "para2": "This is a test value",
             "para3": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results."
           }
