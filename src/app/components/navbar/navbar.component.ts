@@ -16,7 +16,6 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.sharingService.getServiceData().subscribe({
       next: (res) => {
-        // console.log(res);
         this.serviceList = res;
       },
       error: (err) => {
@@ -32,8 +31,5 @@ export class NavbarComponent {
         id: id,
       },
     });
-
-
-    
   }
 }

@@ -31,16 +31,6 @@
             "heading2": "Request and response model",
             "para2": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results.",
             "para3": "Commerce Web Services (CWS) provides an HTTP API in the form of a web server that runs on the same workstation to which the payment terminal (card reader) and printer are connected."
-          },
-          {
-            "heading": "Commerce Web Services",
-            "para": ""
-          }
-        ],
-        "SubChildHeader": [
-          {
-            "SubChildtTitle": "",
-            "SubChildBody": []
           }
         ]
       }
@@ -64,12 +54,6 @@
             "para2": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results.",
             "para3": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results."
           }
-        ],
-        "SubChildHeader": [
-          {
-            "SubChildtTitle": "",
-            "SubChildBody": []
-          }
         ]
       }
     ]
@@ -91,12 +75,6 @@
             "heading2": "Commerce Web Services",
             "para2": "This is a test value",
             "para3": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results."
-          }
-        ],
-        "SubChildHeader": [
-          {
-            "SubChildtTitle": "",
-            "SubChildBody": []
           }
         ]
       }

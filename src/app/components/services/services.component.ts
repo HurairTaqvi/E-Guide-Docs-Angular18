@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharingService } from '../../core/sharing-service/sharing.service';
-// import { json } from 'express';
 
 @Component({
   selector: 'app-services',
@@ -83,6 +82,7 @@ export class ServicesComponent {
             this.ChildID = selectedItem.ID; //ID from the Parent
             // console.log('If' + this.ChildID);
             this.PageContent = x; //Main Array of ParentBody
+            console.log(this.PageContent);
 
             // //Parent Right Bar
             x.map((j: any) => {

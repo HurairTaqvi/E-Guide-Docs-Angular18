@@ -46,6 +46,11 @@
   margin-top: 10px;
 }
 
+.PageContent-content img {
+  width: 100%;
+  display: block;
+}
+
 .leftsidebar {
   border-right: 1px solid rgb(209, 204, 204);
   font-weight: 500;
