@@ -9,7 +9,7 @@
         @if (!item.ChildHeader || item.ChildHeader.length === 0) {
         <!-- Single menu item without child -->
         <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(item.ID); selectContent(item.ID)"
-          style="margin-top: 0">
+          style="margin-top: 10px">
           {{ item.ParentTitle }}
         </li>
         } @else {

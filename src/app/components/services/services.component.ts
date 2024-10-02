@@ -28,15 +28,30 @@ export class ServicesComponent {
     // Get the ID from query params and fetch content data
     this.activatedroute.queryParams.subscribe((param: any) => {
       const id = +param.id; // Get the ParentID from the URL
+      sessionStorage.setItem('myParam', JSON.stringify(id));
 
+      let ParamId = sessionStorage.getItem('myParam');
       // Fetch data based on ParentID
       this.sharingService.getContentData().subscribe({
         next: (res) => {
           const filteredData = res.filter((item: any) => item.ParentID === id);
           this.contentData = filteredData; // Populate the contentData array
-          // console.log('Content Data:', JSON.stringify(this.contentData));
-          this.selectCategory(1);
-          this.selectContent(101);
+
+          if (ParamId) {
+            // Convert ParamId back to number and pass to selectCategory
+            const numericParamId = JSON.parse(ParamId);
+
+            // Assuming selectCategory expects a number, pass it directly
+            this.selectCategory(numericParamId);
+          }
+
+          if (ParamId == '1') {
+            this.selectContent(101);
+          } else if (ParamId == '2') {
+            this.selectContent(202);
+          } else if (ParamId == '3') {
+            this.selectContent(302);
+          }
         },
       });
     });
@@ -70,7 +85,6 @@ export class ServicesComponent {
     this.sharingService.getContentData().subscribe({
       next: (res) => {
         const selectedItem = res.find((item: any) => item.ID === id);
-        // console.log(selectedItem);
 
         if (selectedItem && selectedItem.ParentBody) {
           // Main Body
@@ -100,7 +114,7 @@ export class ServicesComponent {
             const ChildBody = selectedItem.ChildHeader;
             ChildBody.map((e: any) => {
               this.ChildID = e.ChildID; //ID from the Child
-              // console.log('Else' + this.ChildID);
+              console.log('Else' + this.ChildID);
               const ChildBody = selectedItem.ChildHeader;
               ChildBody.map((e: any) => {
                 this.PageContent = e.ChildBody; //Main Array of ChildBody
