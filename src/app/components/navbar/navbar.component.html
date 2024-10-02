@@ -14,7 +14,7 @@
   <!-- Right: Dropdown -->
   <div class="navbar-right">
     <div class="dropdown">
-      <button class="dropdown-button">Documents List</button>
+      <button class="dropdown-button">Documents</button>
       <div class="dropdown-content">
         @for (item of serviceList; track $index) {
         <a (click)="routetoservicedetail(item.id)">{{ item.name }}</a>

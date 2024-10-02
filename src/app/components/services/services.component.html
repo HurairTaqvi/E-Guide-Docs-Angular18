@@ -8,17 +8,18 @@
         @for (item of contentData; track $index) {
         @if (!item.ChildHeader || item.ChildHeader.length === 0) {
         <!-- Single menu item without child -->
-        <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(item.ID); selectContent(item.ID)">
+        <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(item.ID); selectContent(item.ID)"
+          style="margin-top: 0">
           {{ item.ParentTitle }}
         </li>
         } @else {
         <!-- Parent menu item with sublist -->
-        <li nz-submenu [nzTitle]="item.ParentTitle" nzIcon="appstore" style="margin-left: -25px;">
+        <li nz-submenu [nzTitle]="item.ParentTitle" nzIcon="appstore" style="margin-top: 0">
           <ul>
             <!-- Iterate over child headers and display submenu items -->
             @for (child of item.ChildHeader; track $index) {
             <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(child.ChildID); selectContent(item.ID)"
-              style="margin-left: 15px;">
+              style="margin-top: 0">
               {{ child.ChildtTitle }}
             </li>
             }

@@ -70,7 +70,7 @@ export class ServicesComponent {
     this.sharingService.getContentData().subscribe({
       next: (res) => {
         const selectedItem = res.find((item: any) => item.ID === id);
-        console.log(selectedItem);
+        // console.log(selectedItem);
 
         if (selectedItem && selectedItem.ParentBody) {
           // Main Body
@@ -82,7 +82,7 @@ export class ServicesComponent {
             this.ChildID = selectedItem.ID; //ID from the Parent
             // console.log('If' + this.ChildID);
             this.PageContent = x; //Main Array of ParentBody
-            console.log(this.PageContent);
+            // console.log(this.PageContent);
 
             // //Parent Right Bar
             x.map((j: any) => {
