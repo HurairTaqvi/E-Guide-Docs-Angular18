@@ -14,7 +14,7 @@
         </li>
         } @else {
         <!-- Parent menu item with sublist -->
-        <li nz-submenu [nzTitle]="item.ParentTitle" nzIcon="appstore" style="margin-top: 0">
+        <li nz-submenu [nzTitle]="item.ParentTitle" style="margin-top: 0">
           <ul>
             <!-- Iterate over child headers and display submenu items -->
             @for (child of item.ChildHeader; track $index) {
