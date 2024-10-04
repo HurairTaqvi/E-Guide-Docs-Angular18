@@ -43,15 +43,30 @@
       <img src={{item.img}} alt="Workflow of Elavon Commerce SDK">
       }
 
-      @else if(ChildID == 102){
+      @else if(ChildID == 102){ <!-- Integration Methods -->
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
       <p [innerHTML]="item.para"></p>
       <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
       <p [innerHTML]="item.para2"></p>
       <p [innerHTML]="item.para3"></p>
+      <h1 id="{{item.heading3}}">{{item.heading3}}</h1>
       <p [innerHTML]="item.para4"></p>
+      <h1 id="{{item.heading4}}">{{item.heading4}}</h1>
       <p [innerHTML]="item.para5"></p>
       }
+
+      <!-- Java (Windows) -->
+      <!-- @else if(ChildID == 103){ 
+      <h1 id="{{item.heading4}}">{{item.heading4}}</h1>
+      <p [innerHTML]="item.para5"></p>
+      <h1 id="{{item.heading5}}">{{item.heading5}}</h1>
+      <p [innerHTML]="item.para6"></p>
+      <h1 id="{{item.heading6}}">{{item.heading6}}</h1>
+      <p [innerHTML]="item.para7"></p>
+      } -->
+
+
+
 
       @else if (ChildID == 202) {
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
