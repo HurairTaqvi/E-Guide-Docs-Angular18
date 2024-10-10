@@ -31,7 +31,7 @@ export class LoginComponent {
           loginTime: new Date().toISOString(),
         };
         localStorage.setItem('loginData', JSON.stringify(this.loginData));
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       } else {
         alert('Invalid credentials');
       }
