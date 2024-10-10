@@ -114,14 +114,14 @@ export class ServicesComponent implements OnInit {
 
             const MatchingIDofMain = ChildElement.find(
               (item: any) => item.ChildID == id
-            ); //102==102
+            ); //Matching The ID of Main Element with the Child
 
             this.ChildID = MatchingIDofMain.ChildID;
 
             if (MatchingIDofMain && MatchingIDofMain.ChildID) {
               const MatchingIDofSub = ChildElement.find(
                 (item: any) => item.ID === id2
-              );
+              ); //Matching The ID of Sub Element with the HTML List
               this.SubChild = MatchingIDofSub.ID;
 
               if (MatchingIDofSub && MatchingIDofSub.ChildBody) {
@@ -138,28 +138,6 @@ export class ServicesComponent implements OnInit {
                 });
               }
             }
-
-            // if(ChildElement && )
-
-            // if (SubElement && SubElement.ChildBody) {
-            //   const y = SubElement.ChildBody; // Main Body
-            //   console.log(SubElement);
-            //   this.ChildID = SubElement.ChildBody ? 0 : SubElement.ID;
-            //   if (y) {
-            //     this.rightbarlist = [];
-            //     this.PageContent = y; // Main Array of ParentBody
-            //   }
-            // }
-
-            //   // Populate rightbarlist for ChildBody
-            // SubElement.ChildBody.forEach((i: any) => {
-            //   Object.keys(i).forEach((key) => {
-            //     if (key.includes('heading')) {
-            //       this.rightbarlist.push(i[key]);
-            //     }
-            //   });
-            // });
-            // });
           }
         } else {
           this.PageContent = []; // Clear PageContent if no content exists
