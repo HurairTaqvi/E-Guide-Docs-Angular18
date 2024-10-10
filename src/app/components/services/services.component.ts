@@ -17,6 +17,7 @@ export class ServicesComponent implements OnInit {
   SubList: any[] = [];
   PageContent: any[] = [];
   ChildID: number = 0;
+  SubChild: number = 0;
   rightbarlist: any[] = [];
   headingsList: any[] = [];
   RightBarHeadingID: any[] = [];
@@ -52,16 +53,16 @@ export class ServicesComponent implements OnInit {
               const numericParamId = JSON.parse(ParamId);
 
               // Assuming selectCategory expects a number, pass it directly
-              this.selectCategory(numericParamId);
+              this.selectCategory(numericParamId, numericParamId);
             }
 
             // Handle specific cases for ParamId
             if (ParamId === '1') {
-              this.selectContent(101);
+              this.selectContent(101, 1);
             } else if (ParamId === '2') {
-              this.selectContent(202);
+              this.selectContent(202, 1);
             } else if (ParamId === '3') {
-              this.selectContent(302);
+              this.selectContent(302, 1);
             }
           },
         });
@@ -70,7 +71,8 @@ export class ServicesComponent implements OnInit {
   }
 
   // Function to handle category selection and fetch child elements
-  selectCategory(id: number): void {
+  selectCategory(id: number, id2: number): void {
+    // console.log(id, id2);
     // Fetch new data for the selected category and update the SubList
     this.sharingService.getContentData().subscribe({
       next: (res) => {
@@ -82,15 +84,15 @@ export class ServicesComponent implements OnInit {
   }
 
   // Function to handle content selection and update page content
-  selectContent(id: number): void {
+  selectContent(id: number, id2: number): void {
+    // console.log(id, id2);
     this.sharingService.getContentData().subscribe({
       next: (res) => {
         const selectedItem = res.find((item: any) => item.ID === id);
-
         if (selectedItem && selectedItem.ParentBody) {
           const x = selectedItem.ParentBody; // Main Body
           this.ChildID = selectedItem.ChildHeader ? 0 : selectedItem.ID; // ID from the Parent
-
+          // console.log(this.ChildID);
           if (!selectedItem.ChildHeader) {
             this.rightbarlist = [];
             this.PageContent = x; // Main Array of ParentBody
@@ -104,29 +106,60 @@ export class ServicesComponent implements OnInit {
               });
             });
           } else {
-            this.rightbarlist = [];
-            const ChildBody = selectedItem.ChildHeader;
+            // this.rightbarlist = [];
+            const parentBodyVal = selectedItem.ParentBody;
+            const ChildElement = selectedItem.ChildHeader;
+            // this.ChildID = parentBodyVal ? 0 : ChildElement.ChildID; // ID from the Parent
+            // console.log(this.ChildID);
 
-            //
-            //
-            //
-            //
-            //
-            //
+            const MatchingIDofMain = ChildElement.find(
+              (item: any) => item.ChildID == id
+            ); //102==102
 
-            ChildBody.forEach((e: any) => {
-              this.ChildID = e.ChildID; // ID from the Child
-              this.PageContent = e.ChildBody; // Main Array of ChildBody
+            this.ChildID = MatchingIDofMain.ChildID;
 
-              // Populate rightbarlist for ChildBody
-              e.ChildBody.forEach((i: any) => {
-                Object.keys(i).forEach((key) => {
-                  if (key.includes('heading')) {
-                    this.rightbarlist.push(i[key]);
-                  }
+            if (MatchingIDofMain && MatchingIDofMain.ChildID) {
+              const MatchingIDofSub = ChildElement.find(
+                (item: any) => item.ID === id2
+              );
+              this.SubChild = MatchingIDofSub.ID;
+
+              if (MatchingIDofSub && MatchingIDofSub.ChildBody) {
+                this.rightbarlist = [];
+                this.PageContent = MatchingIDofSub.ChildBody;
+
+                // Populate rightbarlist
+                this.PageContent.forEach((j: any) => {
+                  Object.keys(j).forEach((key) => {
+                    if (key.includes('heading')) {
+                      this.rightbarlist.push(j[key]);
+                    }
+                  });
                 });
-              });
-            });
+              }
+            }
+
+            // if(ChildElement && )
+
+            // if (SubElement && SubElement.ChildBody) {
+            //   const y = SubElement.ChildBody; // Main Body
+            //   console.log(SubElement);
+            //   this.ChildID = SubElement.ChildBody ? 0 : SubElement.ID;
+            //   if (y) {
+            //     this.rightbarlist = [];
+            //     this.PageContent = y; // Main Array of ParentBody
+            //   }
+            // }
+
+            //   // Populate rightbarlist for ChildBody
+            // SubElement.ChildBody.forEach((i: any) => {
+            //   Object.keys(i).forEach((key) => {
+            //     if (key.includes('heading')) {
+            //       this.rightbarlist.push(i[key]);
+            //     }
+            //   });
+            // });
+            // });
           }
         } else {
           this.PageContent = []; // Clear PageContent if no content exists

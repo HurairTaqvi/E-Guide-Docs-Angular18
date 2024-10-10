@@ -8,8 +8,8 @@
         @for (item of contentData; track $index) {
         @if (!item.ChildHeader || item.ChildHeader.length === 0) {
         <!-- Single menu item without child -->
-        <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(item.ID); selectContent(item.ID)"
-          style="margin-top: 10px">
+        <li nz-menu-item style="cursor: pointer;"
+          (click)="selectCategory(item.ID, item.ID); selectContent(item.ID, item.ID)" style="margin-top: 10px">
           {{ item.ParentTitle }}
         </li>
         } @else {
@@ -18,8 +18,8 @@
           <ul>
             <!-- Iterate over child headers and display submenu items -->
             @for (child of item.ChildHeader; track $index) {
-            <li nz-menu-item style="cursor: pointer;" (click)="selectCategory(child.ChildID); selectContent(item.ID)"
-              style="margin-top: 0">
+            <li nz-menu-item style="cursor: pointer;"
+              (click)="selectCategory(child.ChildID, child.ID); selectContent(item.ID, child.ID)" style="margin-top: 0">
               {{ child.ChildtTitle }}
             </li>
             }
@@ -43,36 +43,44 @@
       <img src={{item.img}} alt="Workflow of Elavon Commerce SDK">
       }
 
-      @else if(ChildID == 102){ <!-- Integration Methods -->
+      @else if(ChildID == 102){<!-- Integration Methods -->
+      @if (SubChild ==1) {
+
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
       <p [innerHTML]="item.para"></p>
-      <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
+      <h1 id="{{item.heading1}}">{{item.heading1}}</h1>
+      <p [innerHTML]="item.para1"></p>
       <p [innerHTML]="item.para2"></p>
+      <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
       <p [innerHTML]="item.para3"></p>
       <h1 id="{{item.heading3}}">{{item.heading3}}</h1>
       <p [innerHTML]="item.para4"></p>
-      <h1 id="{{item.heading4}}">{{item.heading4}}</h1>
-      <p [innerHTML]="item.para5"></p>
+
+      }@else if(SubChild == 2){
+      <h1 id="{{item.heading}}">{{item.heading}}</h1>
+      <p [innerHTML]="item.para"></p>
+      <h1 id="{{item.heading1}}">{{item.heading1}}</h1>
+      <p [innerHTML]="item.para1"></p>
+
+      }@else {
+      <p>Data Not Available</p>
+      }
       }
 
-      <!-- Java (Windows) -->
-      <!-- @else if(ChildID == 103){ 
-      <h1 id="{{item.heading4}}">{{item.heading4}}</h1>
-      <p [innerHTML]="item.para5"></p>
-      <h1 id="{{item.heading5}}">{{item.heading5}}</h1>
-      <p [innerHTML]="item.para6"></p>
-      <h1 id="{{item.heading6}}">{{item.heading6}}</h1>
-      <p [innerHTML]="item.para7"></p>
-      } -->
-
-
-
-      @else if (ChildID == 202) {
+      @else if (ChildID == 202 ) {
+      @if (SubChild ==1 ) {
       <h1 id="{{item.heading}}">{{item.heading}}</h1>
       <p [innerHTML]="item.para"></p>
       <h1 id="{{item.heading2}}">{{item.heading2}}</h1>
       <p [innerHTML]="item.para2"></p>
       <p [innerHTML]="item.para3">{{item.para3}}</p>
+
+      }@else if(SubChild == 2){
+      <h1 id="{{item.heading}}">{{item.heading}}</h1>
+      <p [innerHTML]="item.para"></p>
+      }@else{
+      <p>Data Not Found</p>
+      }
       }
 
       @else if (ChildID == 302) {

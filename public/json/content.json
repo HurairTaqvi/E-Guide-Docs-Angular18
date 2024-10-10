@@ -37,6 +37,19 @@
             "para4": "<p>The core properties that define a CWS transaction request are:</p><ul> <li><strong>method</strong> - indicates the service to be performed</li>  <li><strong>targetType</strong> - indicates the type of request</li>  <li><strong>requestId</strong> - the unique identifier for tracking the request</li>  <li><strong>parameters</strong> - method-dependent properties detailing the specifics of the request</li></ul><p>The core properties that define a CWS transaction response are:</p><ul>  <li><strong>completed</strong> - indicates whether CWS has finished processing the transaction</li>  <li><strong>chanId</strong> - used to obtain status, and continue or cancel the current transaction</li>  <li><strong>eventQueue</strong>"
           }
         ]
+      },
+      {
+        "ChildID": 102,
+        "ID": 2,
+        "ChildtTitle": "Child Title",
+        "ChildBody": [
+          {
+            "heading": "Child Heading ",
+            "para": "Child Para",
+            "heading1": "Child Heading 2",
+            "para1": "Child Para 2"
+          }
+        ]
       }
     ]
   },
@@ -59,6 +72,17 @@
             "para3": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results."
           }
         ]
+      },
+      {
+        "ChildID": 202,
+        "ID": 2,
+        "ChildtTitle": "Introduction",
+        "ChildBody": [
+          {
+            "heading": "Step 1",
+            "para": "MB Group provides an HTTP API in the form of a web server that runs on the same workstation to which the payment terminal (card reader) and printer are connected."
+          }
+        ]
       }
     ]
   },
@@ -77,7 +101,6 @@
             "heading": "Commerce Web Services",
             "para": "Commerce Web Services (CWS) provides an HTTP API in the form of a web server that runs on the same workstation to which the payment terminal (card reader) and printer are connected.",
             "heading2": "Introduction",
-            "para2": "This is a test value",
             "para3": "CWS uses a request-response model based on the concept of Polling. Elavon recommends a polling rate of 750ms or higher.<br> When you send a request, a response returns confirming that CWS received the request and is processing it. From that point on, CWS polls periodically to ask for the status of your request.<br><br> For example, when running a startPaymentTransaction request, CWS polls with getPaymentTransactionStatus. While polling, you may receive updated progress status messages for long-running processes.<br> <br>Response messages contain a completed parameters that reads as false  until CWS finishes processing the request. Once the completed parameter is set to true,  stop polling and read the transaction request results."
           }
         ]
