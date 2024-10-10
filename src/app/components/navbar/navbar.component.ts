@@ -11,6 +11,8 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   serviceList!: any[];
+  isLoggedIn: boolean = false; // Initialize a property
+
   constructor(private sharingService: SharingService, private route: Router) {}
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class NavbarComponent {
         console.log(err);
       },
     });
+    this.isLoggedIn = !!localStorage.getItem('loginData'); // Set property based on localStorage
   }
 
   routetoservicedetail(id: number) {
@@ -31,5 +34,18 @@ export class NavbarComponent {
         id: id,
       },
     });
+  }
+
+  // Logout function
+  logout() {
+    // Remove login data from localStorage
+    localStorage.removeItem('loginData');
+
+    // Update the isLoggedIn status
+    this.isLoggedIn = false;
+
+    // Optionally, you can redirect the user to the login page or home page
+    // For example:
+    // this.router.navigate(['/login']);
   }
 }

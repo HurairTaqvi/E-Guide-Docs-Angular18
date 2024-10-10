@@ -21,6 +21,20 @@
         }
       </div>
     </div>
-    <span><a [routerLink]="['/login']" class="Profile"><i class="bi bi-person-circle"></i></a></span>
+
+    <span class="Profile">
+      @if (!isLoggedIn) {
+      <!--  LogOut -->
+      <a [routerLink]="['/login']">
+        <i class="bi bi-person"></i>
+      </a>
+      }@else {
+      <!--  Login -->
+      <a [routerLink]="['/']" (click)="logout()">
+        <i class="bi bi-person-circle">
+        </i>
+      </a>
+      }
+    </span>
   </div>
 </nav>
