@@ -1,0 +1,63 @@
+/* Styling the login form container */
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e74c3c;
+  height: 100vh;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  align-items: center;
+  /* margin: 150px auto; */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* Label styles */
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Input field styles */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Button styles */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #45a049;
+}
+
+/* Form error message styling */
+input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
