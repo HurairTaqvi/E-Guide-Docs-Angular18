@@ -8,8 +8,8 @@
         <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required />
+            <!-- <a [routerLink]="['/signup']">Create new account</a> -->
         </div>
-
         <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
     </form>
 </div>

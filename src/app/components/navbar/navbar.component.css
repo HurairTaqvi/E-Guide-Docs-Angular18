@@ -52,7 +52,6 @@
   display: none;
   position: absolute;
   right: 0;
-
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -76,7 +75,54 @@
 
 .Profile {
   border: none;
-  font-size: 30px;
   color: #060531;
   background-color: white;
+}
+
+.dropdown-profile {
+  padding-right: 20px;
+  position: relative;
+  display: inline-block;
+  width: max-content;
+}
+
+.dropdown-button-profile {
+  /* z-index: 1; */
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  color: #060531;
+  border-radius: 15px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content-profile {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content-profile a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content-profile a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-content-profile ul li {
+  list-style: none;
+}
+
+.dropdown-profile:hover .dropdown-content-profile {
+  display: block;
 }

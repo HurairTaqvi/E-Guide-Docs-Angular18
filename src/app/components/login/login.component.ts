@@ -9,16 +9,32 @@ import { SharingService } from '../../core/sharing-service/sharing.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule], // <-- Add FormsModule here
+  imports: [FormsModule, CommonModule],
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   loginData: any = {};
+  ipAddress: any = '';
 
   constructor(private sharingService: SharingService, private router: Router) {}
 
   onSubmit() {
+    async function getIPAddress() {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        console.error('Error fetching the IP address:', error);
+      }
+    }
+
+    getIPAddress().then((ip) => {
+      this.ipAddress = ip;
+      // console.log('Your IP Address is:', this.ipAddress);
+    });
+
     this.sharingService.getLoginCredentials().subscribe((data: any) => {
       const users = data.users;
       const user = users.find(

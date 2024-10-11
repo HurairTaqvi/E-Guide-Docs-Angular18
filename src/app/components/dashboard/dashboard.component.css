@@ -1,0 +1,14 @@
+.main {
+  padding-top: 100px;
+  background-color: #e74c3c;
+  height: 100vh;
+  color: antiquewhite;
+}
+
+.main span {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: block;
+  padding: 0 auto;
+  text-align: center;
+  font-size: 120px;
+}
