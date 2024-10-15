@@ -24,9 +24,8 @@
   padding: 10px 20px;
 }
 
-.PageContent-content h1 {
+.PageContent-content h3 {
   margin-top: 10px;
-  font-size: 2rem;
   font-weight: bolder;
 }
 
@@ -60,7 +59,7 @@
   font-weight: 500;
 }
 
-/* .innerhtml-styling h1 {
+/* .innerhtml-styling h3 {
   color: red;
 } */
 
@@ -76,7 +75,7 @@
   padding: 20px;
 }
 
-.PageContent-main h1 {
+.PageContent-main h3 {
   padding: 10 0;
   margin: 10 0;
 }
