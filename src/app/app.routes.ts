@@ -17,18 +17,18 @@ export const routes: Routes = [
         (c) => c.ServicesComponent
       ),
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-    // canActivate: [authGuard],
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    // canActivate: [authGuard],
-  },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  //   // canActivate: [authGuard],
+  // },
+  // {
+  //   path: 'signup',
+  //   component: SignupComponent,
+  // },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   // canActivate: [authGuard],
+  // },
 ];
