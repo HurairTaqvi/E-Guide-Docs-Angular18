@@ -3,7 +3,7 @@
   <div class="row main">
 
     <!-- Left Sidebar -->
-    <div class="col-3 g-0 leftsidebar nz-menu">
+    <div class="col-2 g-0 leftsidebar nz-menu">
       <ul nz-menu nzMode="inline">
         @for (item of contentData; track $index) {
         @if (item.ParentBody !== null && item.ParentBody !== "undefined") {
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Page Content -->
-    <div class=" col-7 g-0 PageContent-content">
+    <div class=" col-8 g-0 PageContent-content">
       @for (item of PageContent; track $index) {
       @if(item.ParentBody !== null && item.ParentBody !== "undefined"){
       <div>
