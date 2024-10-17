@@ -28,14 +28,36 @@ export class NavbarComponent {
   }
 
   private loadServiceData(): void {
-    this.sharingService.getServiceData().subscribe({
-      next: (res) => {
-        this.serviceList = res;
+    this.sharingService.getDocumentTitle().subscribe({
+      next: (response: any) => {
+        if (response?.Result) {
+          const parsedResponse = JSON.parse(response.Result.Response);
+          const parsedData = JSON.parse(response.Result.Data);
+
+          if (parsedResponse[0]?.Code === '00') {
+            this.serviceList = parsedData;
+          } else {
+            console.error('Error in response:', parsedResponse[0]?.message);
+          }
+        } else {
+          console.error('Invalid response format:', response);
+        }
       },
       error: (err) => {
-        console.error('Error loading service data:', err);
+        console.error('Error fetching data:', err);
       },
     });
+
+    // // JSON based Work
+    // this.sharingService.getServiceData().subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //     this.serviceList = res;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading service data:', err);
+    //   },
+    // });
   }
 
   routetoservicedetail(id: number): void {

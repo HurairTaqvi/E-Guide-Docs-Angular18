@@ -6,21 +6,18 @@
     <div class="col-3 g-0 leftsidebar nz-menu">
       <ul nz-menu nzMode="inline">
         @for (item of contentData; track $index) {
-        @if (!item.ChildHeader || item.ChildHeader.length === 0) {
-        <!-- Single menu item without child -->
+        @if (item.ParentBody !== null && item.ParentBody !== "undefined") {
         <li nz-menu-item style="cursor: pointer;"
           (click)="selectCategory(item.ID, item.ID); selectContent(item.ID, item.ID)" style="margin-top: 10px">
           {{ item.ParentTitle }}
         </li>
         } @else {
-        <!-- Parent menu item with sublist -->
         <li nz-submenu [nzTitle]="item.ParentTitle" style="margin-top: 0">
           <ul>
-            <!-- Iterate over child headers and display submenu items -->
             @for (child of item.ChildHeader; track $index) {
             <li nz-menu-item style="cursor: pointer;"
-              (click)="selectCategory(child.ChildID, child.ID); selectContent(item.ID, child.ID)" style="margin-top: 0">
-              {{ child.ChildtTitle }}
+              (click)="selectCategory(item.ID, child.ID); selectContent(item.ID, child.ID)" style="margin-top: 0">
+              {{ child.ChildTitle}}
             </li>
             }
           </ul>
@@ -31,68 +28,16 @@
     </div>
 
     <!-- Page Content -->
-    <!-- <div class="col-7 g-0 PageContent-main"> -->
-    <!-- Child Id means the Id of the rightbar list  -->
-    <!-- SubChild Id means the Id of the content of child -->
     <div class=" col-7 g-0 PageContent-content">
       @for (item of PageContent; track $index) {
-      @if (ChildID == 101) { <!-- Elavon Commerce SDK overview -->
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para"></p>
-      <h3 id="{{item.heading2}}">{{item.heading2}}</h3>
-      <p [innerHTML]="item.para2"></p>
-      <h3 id="{{item.heading3}}">{{item.heading3}}</h3>
-      <img src={{item.img}} alt="Workflow of Elavon Commerce SDK">
-      }
-
-      @else if(ChildID == 102){<!-- Integration Methods -->
-      @if (SubChild ==1) {
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para"></p>
-      <h3 id="{{item.heading1}}">{{item.heading1}}</h3>
-      <p [innerHTML]="item.para1"></p>
-      <p [innerHTML]="item.para2"></p>
-      <h3 id="{{item.heading2}}">{{item.heading2}}</h3>
-      <p [innerHTML]="item.para3"></p>
-      <h3 id="{{item.heading3}}">{{item.heading3}}</h3>
-      <p [innerHTML]="item.para4"></p>
-
-      }@else if(SubChild == 2){
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para"></p>
-      <h3 id="{{item.heading1}}">{{item.heading1}}</h3>
-      <p [innerHTML]="item.para1"></p>
-      }@else {
-      <p>Data Not Available</p>
-      }
-      }
-
-      @else if (ChildID == 202 ) {
-      @if (SubChild ==1 ) {
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para"></p>
-      <h3 id="{{item.heading2}}">{{item.heading2}}</h3>
-      <p [innerHTML]="item.para2"></p>
-      <p [innerHTML]="item.para3">{{item.para3}}</p>
-
-      }@else if(SubChild == 2){
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para"></p>
+      @if(item.ParentBody !== null && item.ParentBody !== "undefined"){
+      <div>
+        <h3 id="{{item.heading}}">{{item.heading}}</h3>
+        <p [innerHTML]="item.para"></p>
+        <img src={{item.Img}} alt="">
+      </div>
       }@else{
-      <p>Data Not Found</p>
-      }
-      }
-
-      @else if (ChildID == 302) {
-      <h3 id="{{item.heading}}">{{item.heading}}</h3>
-      <p [innerHTML]="item.para3"></p>
-      <h3 id="{{item.heading2}}">{{item.heading2}}</h3>
-      <p [innerHTML]="item.para2"></p>
-      <p [innerHTML]="item.para3"></p>
-      }
-
-      @else{
-      <p>Data Not Found</p>
+      <p>Data not found</p>
       }
       }
     </div>
@@ -100,7 +45,6 @@
     <!-- Right Sidebar -->
     <div class="col-2 rightbar">
       <h5>On this page</h5>
-
       <ul>
         @for (heading of rightbarlist; track $index) {
         <li (click)="Scrolltotext(heading)"> {{ heading }} </li>

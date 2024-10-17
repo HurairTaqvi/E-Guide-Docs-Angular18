@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharingService } from '../../core/sharing-service/sharing.service';
 import { isPlatformBrowser } from '@angular/common';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-services',
@@ -23,11 +22,12 @@ export class ServicesComponent implements OnInit {
   headingsList: any[] = [];
   RightBarHeadingID: any[] = [];
   ContentApiResponse: any[] = [];
-  // //Api Arrays
-  ContentApiResponseCode: any[] = [];
-  ContentApiResponseMessage: any[] = [];
+  ContentApiResponseCode: string = '';
+  ContentApiResponseMessage: string = '';
   ContentApiData: any[] = []; // Main Source Array for Data
   ShowContentApiData: any[] = [];
+  ParentIDValue: number = 1;
+
   constructor(
     private sharingService: SharingService,
     private activatedroute: ActivatedRoute,
@@ -37,94 +37,64 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
     // Check if the current platform is a browser
     if (isPlatformBrowser(this.platformId)) {
-      let sessionStorage: Storage = window.sessionStorage;
+      const sessionStorage: Storage = window.sessionStorage;
 
       // Get the ID from query params and fetch content data
       this.activatedroute.queryParams.subscribe((param: any) => {
         const id = +param.id; // Get the ParentID from the URL
         sessionStorage.setItem('myParam', JSON.stringify(id));
-        let ParamId = sessionStorage.getItem('myParam');
+        const ParamId = sessionStorage.getItem('myParam');
 
-        // //Data from API
+        // Fetch data from the API
         this.sharingService.getApiData().subscribe({
           next: (res: any) => {
-            let val = res;
-            // console.log(val);
-            // Parse Result.Response if needed
-            const response = res?.Result?.Response;
-            const responseparse = JSON.parse(response);
-            const responseval = responseparse[0];
-            this.ContentApiResponse = responseval;
-            // console.log(responseval);
-            const responCode = responseval.Code;
-            const responMessage = responseval.Message;
+            const response = JSON.parse(res?.Result?.Response)[0];
+            this.ContentApiResponseCode = response.Code;
+            this.ContentApiResponseMessage = response.Message;
 
-            this.ContentApiResponseCode = responseval.Code;
-            this.ContentApiResponseMessage = responseval.Message;
-
-            if (responCode === '00') {
+            if (this.ContentApiResponseCode === '00') {
               const dataMain = res?.Result?.Data;
-              const dataparse = JSON.parse(dataMain);
-              const responseval = dataparse[0].Dataa;
-              // console.log(responseval);
-              this.ContentApiData = JSON.parse(responseval); // Main Source Array for Data
-              // console.log(this.ContentApiData);
+              const parsedData = JSON.parse(dataMain);
+              this.ContentApiData = parsedData[0].Dataa; // Main Source Array for Data
+              // Filter data by ParentID
+
+              const findingParentId = this.ContentApiData.filter(
+                (item: any) => (this.ParentIDValue = item.ParentID)
+              );
+
+              console.log(findingParentId[0]);
+              // console.log(findingParentId[0].ParentID);
+              // let ParentIDValue: number; // Declare the variable
+              // this.ParentIDValue(findingParentId);
 
               const filteredData = this.ContentApiData.filter(
                 (item: any) => item.ParentID === id
               );
-              this.contentData = filteredData; // Populate the contentData array
-
-              // this.contentData = this.ContentApiData.filter((item:any)=>item.ParentID ===id);
-              // console.log(this.contentData);
-
-              if (ParamId) {
-                // Convert ParamId back to number and pass to selectCategory
+              this.contentData = filteredData; // Populate the leftsidebar array
+              if (ParamId !== null && ParamId !== 'undefined') {
                 const numericParamId = JSON.parse(ParamId);
-
-                // Assuming selectCategory expects a number, pass it directly
                 this.selectCategory(numericParamId, numericParamId);
-              }
 
-              // Handle specific cases for ParamId
-              if (ParamId === '1') {
-                this.selectContent(101, 1);
-              } else if (ParamId === '2') {
-                this.selectContent(202, 1);
-              } else if (ParamId === '3') {
-                this.selectContent(302, 1);
+                // // Handle specific cases for ParamId
+                if (ParamId === '1') {
+                  this.selectContent(1, 1);
+                } else if (ParamId === '2') {
+                  this.selectContent(2, 1);
+                } else if (ParamId === '3') {
+                  this.selectContent(3, 1);
+                }
+                 else if (ParamId === '4') {
+                  this.selectContent(4, 3);
+                }
+              } else {
+                console.log('Directory link not found');
               }
             } else {
-              console.log(responMessage);
+              // this.contentData = [];
+              console.log(this.ContentApiResponseMessage);
             }
           },
         });
-
-        // JSON Based Word
-        // Fetch data based on ParentID
-        // this.sharingService.getContentData().subscribe({
-        //   next: (res) => {
-        //     const filteredData = res.filter((item: any) => item.ParentID === id);
-        //     this.contentData = filteredData; // Populate the contentData array
-
-        //     if (ParamId) {
-        //       // Convert ParamId back to number and pass to selectCategory
-        //       const numericParamId = JSON.parse(ParamId);
-
-        //       // Assuming selectCategory expects a number, pass it directly
-        //       this.selectCategory(numericParamId, numericParamId);
-        //     }
-
-        //     // Handle specific cases for ParamId
-        //     if (ParamId === '1') {
-        //       this.selectContent(101, 1);
-        //     } else if (ParamId === '2') {
-        //       this.selectContent(202, 1);
-        //     } else if (ParamId === '3') {
-        //       this.selectContent(302, 1);
-        //     }
-        //   },
-        // });
       });
     }
   }
@@ -132,148 +102,72 @@ export class ServicesComponent implements OnInit {
   // Function to handle category selection and fetch child elements
   selectCategory(id: number, id2: number): void {
     // console.log(id, id2);
-    // Fetch new data for the selected category and update the SubList
-
     const selectedItem = this.ContentApiData.find(
       (item: any) => item.ID === id
     );
-    // If the item has a child header, populate the SubList
-    this.SubList = selectedItem?.ChildHeader || []; // Clear SubList if no child headers exist
 
-    //JSON Based Word
-    // this.sharingService.getContentData().subscribe({
-    //   next: (res) => {
-    //     const selectedItem = res.find((item: any) => item.ID === id);
-    //     // If the item has a child header, populate the SubList
-    //     this.SubList = selectedItem?.ChildHeader || []; // Clear SubList if no child headers exist
-    //   },
-    // });
+    this.SubList = selectedItem?.ChildHeader || []; // Clear SubList if no child headers exist
   }
 
   // Function to handle content selection and update page content
   selectContent(id: number, id2: number): void {
     // console.log(id, id2);
-
-    
     const selectedItem = this.ContentApiData.find(
       (item: any) => item.ID === id
     );
-    if (selectedItem && selectedItem.ParentBody) {
+
+    if (selectedItem.ParentBody !== null && selectedItem.ChildHeader === null) {
       const x = selectedItem.ParentBody; // Main Body
       this.ChildID = selectedItem.ChildHeader ? 0 : selectedItem.ID; // ID from the Parent
-      // console.log(this.ChildID);
-      if (!selectedItem.ChildHeader) {
-        this.rightbarlist = [];
-        this.PageContent = x; // Main Array of ParentBody
-        
-        // Populate rightbarlist
-        x.forEach((j: any) => {
-          
-          Object.keys(j).forEach((key) => {
-            if (key.includes('heading')) {
-              this.rightbarlist.push(j[key]);
-            }
-          });
-        });
-      } else {
-        // this.rightbarlist = [];
-        const parentBodyVal = selectedItem.ParentBody;
-        const ChildElement = selectedItem.ChildHeader;
-        // this.ChildID = parentBodyVal ? 0 : ChildElement.ChildID; // ID from the Parent
-        // console.log(this.ChildID);
-
-        const MatchingIDofMain = ChildElement.find(
-          (item: any) => item.ChildID == id
-        ); //Matching The ID of Main Element with the Child
-
-        this.ChildID = MatchingIDofMain.ChildID;
-
-        if (MatchingIDofMain && MatchingIDofMain.ChildID) {
-          const MatchingIDofSub = ChildElement.find(
-            (item: any) => item.ID === id2
-          ); //Matching The ID of Sub Element with the HTML List
-          this.SubChild = MatchingIDofSub.ID;
-
-          if (MatchingIDofSub && MatchingIDofSub.ChildBody) {
-            this.rightbarlist = [];
-            this.PageContent = MatchingIDofSub.ChildBody;
-
-            // Populate rightbarlist
-            this.PageContent.forEach((j: any) => {
-              Object.keys(j).forEach((key) => {
-                if (key.includes('heading')) {
-                  this.rightbarlist.push(j[key]);
-                }
-              });
-            });
+      this.rightbarlist = [];
+      this.PageContent = x;
+      // Populate rightbarlist
+      x.forEach((j: any) => {
+        Object.keys(j).forEach((key) => {
+          if (key.includes('heading')) {
+            this.rightbarlist.push(j[key]);
           }
+        });
+      });
+    } else if (
+      selectedItem.ParentBody === null &&
+      selectedItem.ChildHeader !== null
+    ) {
+      const ChildElement = selectedItem.ChildHeader;
+      const MatchingIDofMain = ChildElement.find(
+        (item: any) => item.ChildID === id
+      );
+
+      if (MatchingIDofMain) {
+        const MatchingIDofSub = ChildElement.find(
+          (item: any) => item.ID === id2
+        );
+        this.SubChild = MatchingIDofSub?.ID; // ID of SubMenu Items
+        if (MatchingIDofSub?.ChildBody) {
+          this.rightbarlist = [];
+          this.PageContent = MatchingIDofSub.ChildBody;
+
+          // //Populate rightbarlist
+          this.PageContent.forEach((j: any) => {
+            Object.keys(j).forEach((key) => {
+              if (key.includes('heading')) {
+                this.rightbarlist.push(j[key]);
+              }
+            });
+          });
+        } else {
+          this.rightbarlist = [];
+          this.PageContent = [];
+          console.log('ChildData is not showing');
         }
       }
     } else {
+      console.log('Data is not showing');
       this.PageContent = []; // Clear PageContent if no content exists
     }
-
-    //JSON Based Work
-    // this.sharingService.getContentData().subscribe({
-    //   next: (res) => {
-    //     const selectedItem = res.find((item: any) => item.ID === id);
-    //     if (selectedItem && selectedItem.ParentBody) {
-    //       const x = selectedItem.ParentBody; // Main Body
-    //       this.ChildID = selectedItem.ChildHeader ? 0 : selectedItem.ID; // ID from the Parent
-    //       // console.log(this.ChildID);
-    //       if (!selectedItem.ChildHeader) {
-    //         this.rightbarlist = [];
-    //         this.PageContent = x; // Main Array of ParentBody
-
-    //         // Populate rightbarlist
-    //         x.forEach((j: any) => {
-    //           Object.keys(j).forEach((key) => {
-    //             if (key.includes('heading')) {
-    //               this.rightbarlist.push(j[key]);
-    //             }
-    //           });
-    //         });
-    //       } else {
-    //         // this.rightbarlist = [];
-    //         const parentBodyVal = selectedItem.ParentBody;
-    //         const ChildElement = selectedItem.ChildHeader;
-    //         // this.ChildID = parentBodyVal ? 0 : ChildElement.ChildID; // ID from the Parent
-    //         // console.log(this.ChildID);
-
-    //         const MatchingIDofMain = ChildElement.find(
-    //           (item: any) => item.ChildID == id
-    //         ); //Matching The ID of Main Element with the Child
-
-    //         this.ChildID = MatchingIDofMain.ChildID;
-
-    //         if (MatchingIDofMain && MatchingIDofMain.ChildID) {
-    //           const MatchingIDofSub = ChildElement.find(
-    //             (item: any) => item.ID === id2
-    //           ); //Matching The ID of Sub Element with the HTML List
-    //           this.SubChild = MatchingIDofSub.ID;
-
-    //           if (MatchingIDofSub && MatchingIDofSub.ChildBody) {
-    //             this.rightbarlist = [];
-    //             this.PageContent = MatchingIDofSub.ChildBody;
-
-    //             // Populate rightbarlist
-    //             this.PageContent.forEach((j: any) => {
-    //               Object.keys(j).forEach((key) => {
-    //                 if (key.includes('heading')) {
-    //                   this.rightbarlist.push(j[key]);
-    //                 }
-    //               });
-    //             });
-    //           }
-    //         }
-    //       }
-    //     } else {
-    //       this.PageContent = []; // Clear PageContent if no content exists
-    //     }
-    //   },
-    // });
   }
 
+  // Function to scroll to specific headings
   Scrolltotext(itemHeading: string): void {
     const headingElement = this.PageContent.flatMap((item) =>
       Object.keys(item)

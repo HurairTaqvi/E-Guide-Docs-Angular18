@@ -44,6 +44,7 @@
 }
 
 .leftsidebar {
+  height: 100vh;
   top: 0;
   max-height: 88vh;
   position: sticky;
