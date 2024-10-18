@@ -124,9 +124,18 @@ export class ServicesComponent implements OnInit {
       this.rightbarlist = [];
       this.PageContent = x;
       // Populate rightbarlist
+      // x.forEach((j: any) => {
+      //   Object.keys(j).forEach((key) => {
+      //     if (key.includes('heading')) {
+      //       this.rightbarlist.push(j[key]);
+      //     }
+      //   });
+      // });
+
       x.forEach((j: any) => {
         Object.keys(j).forEach((key) => {
-          if (key.includes('heading')) {
+          if (key.includes('heading') && j[key]) {
+            // Check if value is not null, undefined, or falsy
             this.rightbarlist.push(j[key]);
           }
         });
@@ -152,7 +161,8 @@ export class ServicesComponent implements OnInit {
           // //Populate rightbarlist
           this.PageContent.forEach((j: any) => {
             Object.keys(j).forEach((key) => {
-              if (key.includes('heading')) {
+              if (key.includes('heading') && j[key]) {
+                // Check if value is not null, undefined, or falsy
                 this.rightbarlist.push(j[key]);
               }
             });
