@@ -30,17 +30,21 @@ export class NavbarComponent {
   private loadServiceData(): void {
     this.sharingService.getDocumentTitle().subscribe({
       next: (response: any) => {
-        if (response?.Result) {
-          const parsedResponse = JSON.parse(response.Result.Response);
-          const parsedData = JSON.parse(response.Result.Data);
+        try {
+          if (response?.Result) {
+            const parsedResponse = JSON.parse(response.Result.Response);
+            const parsedData = JSON.parse(response.Result.Data);
 
-          if (parsedResponse[0]?.Code === '00') {
-            this.serviceList = parsedData;
+            if (parsedResponse[0]?.Code === '00') {
+              this.serviceList = parsedData;
+            } else {
+              console.error('Error in response:', parsedResponse[0]?.message);
+            }
           } else {
-            console.error('Error in response:', parsedResponse[0]?.message);
+            console.error('Invalid response format:', response);
           }
-        } else {
-          console.error('Invalid response format:', response);
+        } catch (error) {
+          console.error('Error while processing the response:', error);
         }
       },
       error: (err) => {
@@ -71,15 +75,15 @@ export class NavbarComponent {
     this.dropdownOpen = !this.dropdownOpen; // Toggle the dropdown state
   }
 
-  logout(): void {
-    try {
-      localStorage.removeItem('loginData'); // Remove login data from local storage
-      this.isLoggedIn = false; // Update login status
-      console.log('You have been logged out successfully.');
-      // location.reload(); // Refresh the page to reflect the changes
-      this.router.navigate(['/login']);
-    } catch (error) {
-      console.error('Logout failed:', error); // Handle any errors
-    }
-  }
+  // logout(): void {
+  //   try {
+  //     localStorage.removeItem('loginData'); // Remove login data from local storage
+  //     this.isLoggedIn = false; // Update login status
+  //     console.log('You have been logged out successfully.');
+  //     // location.reload(); // Refresh the page to reflect the changes
+  //     this.router.navigate(['/login']);
+  //   } catch (error) {
+  //     console.error('Logout failed:', error); // Handle any errors
+  //   }
+  // }
 }
