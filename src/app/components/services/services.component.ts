@@ -62,7 +62,6 @@ export class ServicesComponent implements OnInit {
                 (item: any) => (this.ParentIDValue = item.ParentID)
               );
 
-              console.log(findingParentId[0]);
               // console.log(findingParentId[0].ParentID);
               // let ParentIDValue: number; // Declare the variable
               // this.ParentIDValue(findingParentId);
@@ -76,16 +75,19 @@ export class ServicesComponent implements OnInit {
                 this.selectCategory(numericParamId, numericParamId);
 
                 // // Handle specific cases for ParamId
-                if (ParamId === '1') {
-                  this.selectContent(1, 1);
-                } else if (ParamId === '2') {
-                  this.selectContent(2, 1);
-                } else if (ParamId === '3') {
-                  this.selectContent(3, 1);
-                }
-                 else if (ParamId === '4') {
-                  this.selectContent(4, 3);
-                }
+                // if (ParamId === '1') {
+                //   this.selectContent(1, 1);
+                // } else if (ParamId === '2') {
+                //   this.selectContent(2, 1);
+                // } else if (ParamId === '3') {
+                //   this.selectContent(3, 1);
+                // }
+                //  else if (ParamId === '4') {
+                //   this.selectContent(4, 3);
+                // }
+                // const IDofSubMenu = filteredData[0].ID;
+                // console.log(filteredData[0].ID);
+                this.selectContent(numericParamId, 3); //Onload Data Showing with out selection
               } else {
                 console.log('Directory link not found');
               }
