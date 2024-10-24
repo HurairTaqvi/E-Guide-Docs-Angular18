@@ -31,12 +31,12 @@
 }
 
 .PageContent-content p {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 30px;
 }
 
 .PageContent-content ul li {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 10px;
   margin-bottom: 30px;
 }
@@ -63,7 +63,7 @@
 }
 
 .leftsidebar ul li {
-  font-size: larger;
+  font-size: 16;
   margin-top: 10px;
   font-weight: 500;
 }
@@ -123,7 +123,6 @@
 .rightbar h5 {
   cursor: auto;
   margin-top: 20px;
-  font-size: 18px;
   text-transform: uppercase;
   color: rgb(2, 1, 20);
 }
@@ -137,13 +136,15 @@
   line-height: 100%;
   padding: 10px;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
   color: rgb(2, 1, 20);
   margin-bottom: 5px;
 }
 
 .rightbar li:hover {
-  background-color: rgb(2, 1, 20);
+  border-radius: 10px;
+  background-color: #7367f0;
   color: antiquewhite;
 }
