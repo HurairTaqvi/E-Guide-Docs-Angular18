@@ -1,12 +1,13 @@
 <div class="login">
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <div>
-            <label for="email">Email:</label>
+            <label for="email"><strong>Email:</strong></label>
             <input type="email" id="email" name="email" [(ngModel)]="email" required />
-            <label for="password">Password:</label>
+            <label for="password"><strong>Password:</strong></label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required />
-            <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
-            <a class="anchor" [routerLink]="['/signup']" style="color: #7367F0; ">Create a new account</a>
+            <button type="submit" [disabled]="!loginForm.form.valid"><strong>Login</strong></button>
+            <a class="anchor" [routerLink]="['/signup']" style="color: #020114; "><strong>Create a new
+                    account</strong></a>
             <br>
         </div>
     </form>
