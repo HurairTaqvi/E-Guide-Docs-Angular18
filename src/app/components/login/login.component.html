@@ -3,14 +3,11 @@
         <div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" [(ngModel)]="email" required />
-        </div>
-
-        <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required />
-            <!-- <a [routerLink]="['/signup']">Create new account</a> -->
-            <!-- Today is Wednesday -->
+            <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+            <a class="anchor" [routerLink]="['/signup']" style="color: #7367F0; ">Create a new account</a>
+            <br>
         </div>
-        <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
     </form>
 </div>

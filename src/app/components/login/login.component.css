@@ -43,7 +43,7 @@ input[type="password"] {
 button {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
+  background-color: #6a62c0;
   border: none;
   color: white;
   font-size: 16px;
@@ -54,7 +54,13 @@ button {
 
 /* Button hover effect */
 button:hover {
-  background-color: #45a049;
+  background-color: #020114;
+}
+
+.anchor {
+  text-decoration: none;
+  margin-left: 30%;
+  color: #6a62c0 !important;
 }
 
 /* Form error message styling */

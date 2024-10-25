@@ -45,7 +45,7 @@
   padding: 10px; /* Padding for button */
   border: none; /* No border */
   border-radius: 4px; /* Rounded corners */
-  background-color: #007bff; /* Primary color */
+  background-color: #6a62c0; /* Primary color */
   color: white; /* Text color */
   font-size: 16px; /* Font size */
   cursor: pointer; /* Pointer cursor on hover */
@@ -54,7 +54,7 @@
 
 /* Hover effect for button */
 .signup button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #020114; /* Darker shade on hover */
 }
 
 /* Media query for small screens */
