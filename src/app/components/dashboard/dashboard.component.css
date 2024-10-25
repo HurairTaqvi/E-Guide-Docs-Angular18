@@ -1,5 +1,5 @@
 .main {
-  padding-top: 100px;
+  padding-top: 250px;
   background-color: #e74c3c;
   height: 100vh;
   color: antiquewhite;
@@ -10,5 +10,5 @@
   display: block;
   padding: 0 auto;
   text-align: center;
-  font-size: 120px;
+  font-size: 75px;
 }

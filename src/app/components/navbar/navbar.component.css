@@ -6,12 +6,6 @@
   border-bottom: 0.1px solid rgb(214, 207, 207);
   border-color: #d3d1d1;
   background-color: rgb(255, 255, 255);
-  /* background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  ); */
   color: #030303;
   position: fixed; /* Stick it to the top */
   top: 0; /* Align it to the top */
@@ -43,7 +37,6 @@
 }
 
 .dropdown-button {
-  /* z-index: 1; */
   font-size: 18px;
   font-weight: 600;
   background-color: rgb(255, 255, 255);
@@ -60,7 +53,6 @@
   position: absolute;
   right: 0;
   background-color: #7367f0;
-  /* min-width: 160px; */
   width: max-content;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -82,13 +74,10 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+  border-radius: 10px;
 }
 
-.Profile {
-  border: none;
-  color: #060531;
-  background-color: white;
-}
+/* asdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  */
 
 .dropdown-profile {
   padding-right: 20px;
@@ -98,11 +87,10 @@
 }
 
 .dropdown-button-profile {
-  /* z-index: 1; */
   font-size: 18px;
   font-weight: 600;
   background-color: rgb(255, 255, 255);
-  color: #060531;
+  color: rgb(3, 3, 3);
   border-radius: 15px;
   padding: 10px;
   border: none;
@@ -110,24 +98,28 @@
 }
 
 .dropdown-content-profile {
+  border-radius: 10px;
   display: none;
   position: absolute;
   right: 0;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  background-color: #7367f0;
+  width: max-content;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  text-align: left;
 }
 
 .dropdown-content-profile a {
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-content-profile a:hover {
-  background-color: #ddd;
+  border-radius: 10px;
+  background-color: #6a62c0;
+  color: rgb(255, 255, 255);
 }
 
 .dropdown-content-profile ul li {

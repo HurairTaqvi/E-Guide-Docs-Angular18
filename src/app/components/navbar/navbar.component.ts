@@ -75,15 +75,15 @@ export class NavbarComponent {
     this.dropdownOpen = !this.dropdownOpen; // Toggle the dropdown state
   }
 
-  // logout(): void {
-  //   try {
-  //     localStorage.removeItem('loginData'); // Remove login data from local storage
-  //     this.isLoggedIn = false; // Update login status
-  //     console.log('You have been logged out successfully.');
-  //     // location.reload(); // Refresh the page to reflect the changes
-  //     this.router.navigate(['/login']);
-  //   } catch (error) {
-  //     console.error('Logout failed:', error); // Handle any errors
-  //   }
-  // }
+  logout(): void {
+    try {
+      localStorage.removeItem('loginData'); // Remove login data from local storage
+      this.isLoggedIn = false; // Update login status
+      console.log('You have been logged out successfully.');
+      // location.reload(); // Refresh the page to reflect the changes
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Logout failed:', error); // Handle any errors
+    }
+  }
 }
