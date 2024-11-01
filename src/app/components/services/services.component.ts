@@ -87,7 +87,7 @@ export class ServicesComponent implements OnInit {
                 // }
                 // const IDofSubMenu = filteredData[0].ID;
                 // console.log(filteredData[0].ID);
-                this.selectContent(numericParamId, 3); //Onload Data Showing with out selection
+                this.selectContent(numericParamId, 3); //Onload Data Showing with out selection // *********************************APIs_Content__Required_onLoad*********************************
               } else {
                 console.log('Directory link not found');
               }
