@@ -72,7 +72,7 @@ export class ServicesComponent implements OnInit {
               this.contentData = filteredData; // Populate the leftsidebar array
               if (ParamId !== null && ParamId !== 'undefined') {
                 const numericParamId = JSON.parse(ParamId);
-                this.selectCategory(numericParamId, numericParamId);
+                this.selectCategory(numericParamId, numericParamId); // *********************************APIs_Content__Required_onLoad*********************************
 
                 // // Handle specific cases for ParamId
                 // if (ParamId === '1') {
